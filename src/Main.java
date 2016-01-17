@@ -31,6 +31,10 @@ public class Main extends Canvas implements Runnable{
 		new Window(WIDTH, HEIGHT, "Skip the ball!", this);
 		
 		hud = new HUD();
+
+		// create object 
+		handler.addObject(new Player(Main.WIDTH/2, Main.HEIGHT - 100, GameObjectID.Player, handler));
+		handler.addObject(new Enemy(Main.WIDTH/2, 0, GameObjectID.Player));
 	}
 	
 	//Starting the content of game inside the window
@@ -92,6 +96,12 @@ public class Main extends Canvas implements Runnable{
 	}
 	
 	public void updateGameLogic(){
+		if(HUD.HEALTH <= 0){
+			System.out.println("GAME OVER");
+			// later will be switch to a screen for Game Over 
+			System.exit(1);
+		}
+
 		if(state == GameState.Game){
 			handler.updateGameObjectsLogic();
 			hud.updateGameObjectsLogic();

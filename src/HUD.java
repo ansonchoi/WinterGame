@@ -8,7 +8,7 @@ public class HUD {
 	public static int HEALTH = 100;
 	
 	public void updateGameObjectsLogic(){
-		HEALTH--;
+		// HEALTH--;
 
 		HEALTH = Main.constrain(HEALTH, 0, 100);
 	}
