@@ -19,6 +19,7 @@ public class Main extends Canvas implements Runnable{
 	
 	private GameObjectHandler handler;
 	private Menu menu;
+	private HUD hud;
 	
 	public Main(){
 		handler = new GameObjectHandler();
@@ -28,6 +29,8 @@ public class Main extends Canvas implements Runnable{
 		this.addMouseListener(menu);
 		
 		new Window(WIDTH, HEIGHT, "Skip the ball!", this);
+		
+		hud = new HUD();
 	}
 	
 	//Starting the content of game inside the window
@@ -91,6 +94,7 @@ public class Main extends Canvas implements Runnable{
 	public void updateGameLogic(){
 		if(state == GameState.Game){
 			handler.updateGameObjectsLogic();
+			hud.updateGameObjectsLogic();
 		}else if(state == GameState.Menu){
 			
 		}
@@ -114,6 +118,7 @@ public class Main extends Canvas implements Runnable{
 		
 		if(state == GameState.Game){
 			handler.updateGameObjectsGraphic(g);
+			hud.updateGameObjectsGraphic(g);
 		}else{
 			menu.updateMenuGraphic(g);
 		}
