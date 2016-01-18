@@ -19,6 +19,7 @@ public class Main extends Canvas implements Runnable{
 	
 	private GameObjectHandler handler;
 	private Menu menu;
+	private HUD hud;
 	
 	public Main(){
 		handler = new GameObjectHandler();
@@ -28,6 +29,12 @@ public class Main extends Canvas implements Runnable{
 		this.addMouseListener(menu);
 		
 		new Window(WIDTH, HEIGHT, "Skip the ball!", this);
+		
+		hud = new HUD();
+
+		// create object 
+		handler.addObject(new Player(Main.WIDTH/2, Main.HEIGHT - 100, GameObjectID.Player, handler));
+		handler.addObject(new Enemy(Main.WIDTH/2, 0, GameObjectID.Player));
 	}
 	
 	//Starting the content of game inside the window
@@ -89,8 +96,15 @@ public class Main extends Canvas implements Runnable{
 	}
 	
 	public void updateGameLogic(){
+		if(HUD.HEALTH <= 0){
+			System.out.println("GAME OVER");
+			// later will be switch to a screen for Game Over 
+			System.exit(1);
+		}
+
 		if(state == GameState.Game){
 			handler.updateGameObjectsLogic();
+			hud.updateGameObjectsLogic();
 		}else if(state == GameState.Menu){
 			
 		}
@@ -114,6 +128,7 @@ public class Main extends Canvas implements Runnable{
 		
 		if(state == GameState.Game){
 			handler.updateGameObjectsGraphic(g);
+			hud.updateGameObjectsGraphic(g);
 		}else{
 			menu.updateMenuGraphic(g);
 		}
