@@ -26,10 +26,6 @@ public class Menu extends MouseAdapter{
 		
 		if(main.state == GameState.Menu && Main.isMouseOver(mx, my, 125, 150, 200, 70)){ // Start
 			main.state = GameState.Game;
-			
-			//this is just for testing the code
-			handler.addObject(new Player(Main.WIDTH/2, Main.HEIGHT - 100, GameObjectID.Player, handler));
-			handler.addObject(new Enemy(Main.WIDTH/2, 0, GameObjectID.Player));
 		}else if(main.state == GameState.Menu && Main.isMouseOver(mx, my, 125, 280, 200, 70)){ // Score
 			main.state = GameState.Score;
 		}else if(main.state == GameState.Menu && Main.isMouseOver(mx, my, 125, 410, 200, 70)){ // About
@@ -38,7 +34,6 @@ public class Menu extends MouseAdapter{
 				|| main.state == GameState.About) && Main.isMouseOver(mx, my, 125, 410, 200, 70)){ //Back button
 			main.state = GameState.Menu;
 		}
-		
 		
 	}
 	

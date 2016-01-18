@@ -28,7 +28,11 @@ public class Player extends GameObject {
 		for(GameObject object : handler.getAllObjects()){
 			if(!(object instanceof Player)){
 				if(this.getBounds().intersects(object.getBounds()))
-					handler.removeObject(object);
+					// remove object 
+					// handler.removeObject(object);
+					// reduce health 
+					HUD.HEALTH--;
+
 			}
 		}
 	}
