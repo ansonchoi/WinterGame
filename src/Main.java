@@ -33,8 +33,6 @@ public class Main extends Canvas implements Runnable{
 		hud = new HUD();
 
 		// create object 
-		handler.addObject(new Player(Main.WIDTH/2, Main.HEIGHT - 100, GameObjectID.Player, handler));
-		handler.addObject(new Enemy(Main.WIDTH/2, 0, GameObjectID.Player));
 	}
 	
 	//Starting the content of game inside the window
@@ -104,7 +102,7 @@ public class Main extends Canvas implements Runnable{
 
 		if(state == GameState.Game){
 			handler.updateGameObjectsLogic();
-			hud.updateGameObjectsLogic();
+			hud.updateHUDLogic();
 		}else if(state == GameState.Menu){
 			
 		}
@@ -128,7 +126,7 @@ public class Main extends Canvas implements Runnable{
 		
 		if(state == GameState.Game){
 			handler.updateGameObjectsGraphic(g);
-			hud.updateGameObjectsGraphic(g);
+			hud.updateHUDGraphic(g);
 		}else{
 			menu.updateMenuGraphic(g);
 		}
