@@ -40,7 +40,7 @@ public class Player extends GameObject {
 	@Override
 	public void updateGraphic(Graphics g) {
 		//This is an example to make a representation to the object player
-		g.setColor(Color.white);
+		g.setColor(Color.blue);
 		g.fillRect(x, y, 30, 30);
 	}
 
