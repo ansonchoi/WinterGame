@@ -1,5 +1,6 @@
 
 public enum GameObjectID {
-	Player,
-	Enemy;
+	Player(),
+	Enemy(),
+	Bullet();//Created by Henry
 }

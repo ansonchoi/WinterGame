@@ -42,8 +42,6 @@ public class Main extends Canvas implements Runnable{
 		bgMusic.loop();
 		
 		// create object 
-		handler.addObject(new Player(Main.WIDTH/2, Main.HEIGHT - 100, GameObjectID.Player, handler));
-		handler.addObject(new Enemy(Main.WIDTH/2, 0, GameObjectID.Player));
 	}
 	
 	//Starting the content of game inside the window
@@ -113,7 +111,7 @@ public class Main extends Canvas implements Runnable{
 
 		if(state == GameState.Game){
 			handler.updateGameObjectsLogic();
-			hud.updateGameObjectsLogic();
+			hud.updateHUDLogic();
 		}else if(state == GameState.Menu){
 			
 		}
@@ -137,7 +135,7 @@ public class Main extends Canvas implements Runnable{
 		
 		if(state == GameState.Game){
 			handler.updateGameObjectsGraphic(g);
-			hud.updateGameObjectsGraphic(g);
+			hud.updateHUDGraphic(g);
 		}else{
 			menu.updateMenuGraphic(g);
 		}
@@ -150,8 +148,8 @@ public class Main extends Canvas implements Runnable{
 	
 	//constrain a variable within a boundaries
 	public static int constrain(int var, int min, int max){
-		if(var <= min) return var = min;
-		else if(var >= max) return var = max;
+		if(var < min) return var = min;
+		else if(var > max) return var = max;
 		else return var;
 	}
 	
