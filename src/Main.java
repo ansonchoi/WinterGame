@@ -11,23 +11,22 @@ public class Main extends Canvas implements Runnable{
 	//Size of the Window
 	public static final int WIDTH = 450, HEIGHT = WIDTH * 12 / 9;
 	
-	public GameState state = GameState.Menu;
-	
 	private Thread thread;
 	
 	private boolean isRunning = false;
 	
 	private GameObjectHandler handler;
-	private Menu menu;
 	
 	public Main(){
 		handler = new GameObjectHandler();
-		menu = new Menu(this, handler);
 		
 		this.addKeyListener(new Controller(handler));
-		this.addMouseListener(menu);
 		
 		new Window(WIDTH, HEIGHT, "Skip the ball!", this);
+		
+		handler.addObject(new Player(WIDTH/2, HEIGHT - 100, GameObjectID.Player, handler));
+		handler.addObject(new Enemy(WIDTH/2, 0, GameObjectID.Enemy));
+
 	}
 	
 	//Starting the content of game inside the window
@@ -89,12 +88,7 @@ public class Main extends Canvas implements Runnable{
 	}
 	
 	public void updateGameLogic(){
-		if(state == GameState.Game){
-			handler.updateGameObjectsLogic();
-		}else if(state == GameState.Menu){
-			
-		}
-		
+		handler.updateGameObjectsLogic();
 	}
 	
 	//draw everything function
@@ -107,39 +101,21 @@ public class Main extends Canvas implements Runnable{
 		
 		Graphics g = bs.getDrawGraphics();
 		
-		//screen color
-		g.setColor(Color.black); 
+		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH,HEIGHT);
 		
-		
-		if(state == GameState.Game){
-			handler.updateGameObjectsGraphic(g);
-		}else{
-			menu.updateMenuGraphic(g);
-		}
+		handler.updateGameObjectsGraphic(g);
 		
 		g.dispose();
 		bs.show();
 	}
 	
-	//Help functions:
-	
 	//constrain a variable within a boundaries
 	public static int constrain(int var, int min, int max){
-		if(var <= min) return var = min;
-		else if(var >= max) return var = max;
+		if(var < min) return var = min;
+		else if(var > max) return var = max;
 		else return var;
 	}
-	
-	//check if the mouse is clicked in desired region
-	public static boolean isMouseOver(int mx, int my, int x, int y, int width, int height){
-		if((mx > x && mx < x + width)
-			&&(my > y && my < y + height)){
-			return true;
-		}
-		return false;
-	}
-	
 	public static void main(String[] args) {
 		new Main();
 	}

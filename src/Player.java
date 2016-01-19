@@ -17,18 +17,19 @@ public class Player extends GameObject {
 		x += veloX;
 		y += veloY;
 		
-		//WIDTH, HEIGTH - object size - number (which is covered by the window board)
 		x = Main.constrain(x, 0, Main.WIDTH - 30 - 5);
-		y = Main.constrain(y, 0, Main.HEIGHT - 30 - 28);
+		y = Main.constrain(y, 0, Main.HEIGHT - 30 -28);
 		
 		collisionAnalyse();
 	}
 
 	private void collisionAnalyse() {
 		for(GameObject object : handler.getAllObjects()){
-			if(!(object instanceof Player)){
-				if(this.getBounds().intersects(object.getBounds()))
+			if(object instanceof Enemy){
+				if(this.getBounds().intersects(object.getBounds())){
+					System.out.println("Suicide");
 					handler.removeObject(object);
+				}
 			}
 		}
 	}
@@ -45,4 +46,5 @@ public class Player extends GameObject {
 		return new Rectangle(x, y, 30, 30);
 	}
 	
+
 }

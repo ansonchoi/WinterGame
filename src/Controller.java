@@ -14,18 +14,15 @@ public class Controller extends KeyAdapter {
 	
 	public void keyPressed(KeyEvent e){
 		int key = e.getKeyCode();
-
-		// press esc to close the game
-		if(key == KeyEvent.VK_ESCAPE)	System.exit(1);
 		
 		for(GameObject object : this.handler.getAllObjects()){
-			
 			if(object instanceof Player){
 				switch(key){
 					case KeyEvent.VK_UP: object.setVeloY(-movingSpeed); break;
 					case KeyEvent.VK_DOWN: object.setVeloY(movingSpeed); break;
 					case KeyEvent.VK_LEFT: object.setVeloX(-movingSpeed); break;
-					case KeyEvent.VK_RIGHT: object.setVeloX(movingSpeed); break; 
+					case KeyEvent.VK_RIGHT: object.setVeloX(movingSpeed); break;
+					case KeyEvent.VK_ESCAPE: System.exit(1);
 				}
 			}
 		}
@@ -42,6 +39,8 @@ public class Controller extends KeyAdapter {
 					case KeyEvent.VK_DOWN: object.setVeloY(0); break;
 					case KeyEvent.VK_LEFT: object.setVeloX(0); break;
 					case KeyEvent.VK_RIGHT: object.setVeloX(0); break;
+					case KeyEvent.VK_SPACE: Bullet b = new Bullet(object.getX(),object.getY(),GameObjectID.Bullet,this.handler);this.handler.addObject(b);break;//created by Henry
+
 				}
 			}
 		}
