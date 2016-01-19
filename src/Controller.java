@@ -47,10 +47,7 @@ public class Controller extends KeyAdapter {
 				case KeyEvent.VK_LEFT: leftIsHolding = false; break;
 				case KeyEvent.VK_RIGHT: rightIsHolding = false; break;
 					case KeyEvent.VK_SPACE:
-					handler.getBulletObjects().get(bulletCounter).setX(object.getX()+8);
-					handler.getBulletObjects().get(bulletCounter).setY(object.getY()-10);
-					bulletCounter++;
-					if(bulletCounter==14)bulletCounter=0;
+					handler.addObject(new Bullet(object.getX()+8, object.getY()-10, GameObjectID.Bullet, handler));
 				}
 				setMotion(object);
 			}

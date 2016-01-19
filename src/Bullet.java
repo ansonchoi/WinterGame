@@ -3,7 +3,9 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class Bullet extends GameObject{
+	
 	private GameObjectHandler handler;
+	
 	public Bullet(int x, int y, GameObjectID id, GameObjectHandler handler) {
 		super(x, y, id);
 		veloY = 10;
@@ -16,10 +18,6 @@ public class Bullet extends GameObject{
 	@Override
 	public void updateLogic() {
 
-		if(y < 0 || y > Main.HEIGHT - 15 - 28){
-			this.x = -100;
-			this.y = 100;
-		}
 		y -= veloY;
 		collisionAnalyse();
 	}
@@ -44,6 +42,9 @@ public class Bullet extends GameObject{
 				}
 			}
 		}
+		
+
+		if(this.getY() < 100) handler.removeObject(this);
 	}
 	
 }
