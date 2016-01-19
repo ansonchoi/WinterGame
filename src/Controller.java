@@ -59,24 +59,20 @@ public class Controller extends KeyAdapter {
 	
 	//Depends on the button pressing state, decide the motion of player
 	private void setMotion(GameObject player){
-		if(upIsHolding ^ downIsHolding){
+		if(!(upIsHolding ^ downIsHolding)){
 			player.setVeloY(0);
 		}else if(upIsHolding){
 			player.setVeloY(-movingSpeed);
 		}else if(downIsHolding){
 			player.setVeloY(movingSpeed);
-		}else{
-			player.setVeloY(0);
 		}
 
-		if(leftIsHolding && rightIsHolding){
+		if(!(leftIsHolding ^ rightIsHolding)){
 			player.setVeloX(0);
 		}else if(leftIsHolding){
 			player.setVeloX(-movingSpeed);
 		}else if(rightIsHolding){
 			player.setVeloX(movingSpeed);
-		}else{
-			player.setVeloX(0);
 		}
 	}
 }
