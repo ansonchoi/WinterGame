@@ -28,6 +28,11 @@ public class Menu extends MouseAdapter{
 			main.state = GameState.Game;
 			handler.addObject(new Player(100,100, GameObjectID.Player , handler));
 			handler.addObject(new Enemy(50,50, GameObjectID.Enemy));
+			for(int j =0;j<=15;j++){
+			handler.addObject(new Bullet(-100,100, GameObjectID.Bullet , handler));
+			}
+
+
 			
 		}else if(main.state == GameState.Menu && Main.isMouseOver(mx, my, 125, 280, 200, 70)){ // Score
 			main.state = GameState.Score;

@@ -1,6 +1,7 @@
 
 import java.awt.Graphics;
 import java.util.LinkedList;
+import java.util.Iterator;
 
 public class GameObjectHandler {
 	//an linked list to store all game objects
@@ -13,9 +14,11 @@ public class GameObjectHandler {
 			for(GameObject object : gameObjects){
 				object.updateLogic();
 			}
-			for(GameObject object : bulletObjects){
+			Iterator<GameObject> iterator = bulletObjects.iterator();
+			while (iterator.hasNext()){
+				GameObject object = iterator.next();
 				object.updateLogic();
-			}
+			 }
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -52,12 +55,18 @@ public class GameObjectHandler {
 	//remove object from the game object handler
 	public void removeObject(GameObject object){
 		System.out.println("Trying to remove an object");
-		gameObjects.remove(object);
+		if(object instanceof Bullet){
+			bulletObjects.remove(object);
+		}else{
+			gameObjects.remove(object);
+		}
 		System.out.println("Finish removing an object");
 	}
 	
 	public LinkedList<GameObject> getAllObjects(){
 		return this.gameObjects;
 	}
-	
+	public LinkedList<GameObject> getBulletObjects(){
+		return this.bulletObjects;
+	}
 }
