@@ -26,8 +26,11 @@ public class GameObjectHandler {
 		for(GameObject object : gameObjects){
 			object.updateGraphic(g);
 		}
-		for(GameObject bullet : bulletObjects){
-			bullet.updateGraphic(g);
+
+		GameObject temp;
+		for(int i = 0; i < bulletObjects.size() ; i++){
+			temp = bulletObjects.get(i);
+			temp.updateGraphic(g);
 		}
 	}
 	
