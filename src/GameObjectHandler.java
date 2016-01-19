@@ -9,12 +9,12 @@ public class GameObjectHandler {
 	
 	//update all game objects'logic
 	public void updateGameObjectsLogic(){
-		for(GameObject object : gameObjects){
-			object.updateLogic();
+		GameObject temp;
+		for(int i = 0; i < gameObjects.size(); i ++){
+			temp = gameObjects.get(i);
+			temp.updateLogic();
 		}
 		
-		//Loop through a list and operate with certain object
-		GameObject temp;
 		for(int i = 0; i < bulletObjects.size() ; i++){
 			temp = bulletObjects.get(i);
 			temp.updateLogic();
@@ -23,11 +23,13 @@ public class GameObjectHandler {
 	
 	//update all game objects'graphic
 	public void updateGameObjectsGraphic(Graphics g){
-		for(GameObject object : gameObjects){
-			object.updateGraphic(g);
-		}
 
 		GameObject temp;
+		for(int i = 0; i < gameObjects.size(); i ++){
+			temp = gameObjects.get(i);
+			temp.updateGraphic(g);
+		}
+
 		for(int i = 0; i < bulletObjects.size() ; i++){
 			temp = bulletObjects.get(i);
 			temp.updateGraphic(g);
