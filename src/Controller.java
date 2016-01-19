@@ -6,7 +6,7 @@ public class Controller extends KeyAdapter {
 	
 	private GameObjectHandler handler;
 	private int movingSpeed;
-	private int bulletCounter = 0;
+	private int bulletCounter;
 	
 	private boolean upIsHolding;
 	private boolean downIsHolding;
