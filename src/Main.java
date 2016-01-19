@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.URL;
+
 public class Main extends Canvas implements Runnable{
 
 	public static final long serialVersionUID = 1L;
@@ -31,7 +35,12 @@ public class Main extends Canvas implements Runnable{
 		new Window(WIDTH, HEIGHT, "Skip the ball!", this);
 		
 		hud = new HUD();
-
+		
+		// play background music
+		URL musicLink = Main.class.getResource("music.wav");
+		AudioClip bgMusic = Applet.newAudioClip(musicLink);
+		bgMusic.loop();
+		
 		// create object 
 	}
 	
@@ -139,8 +148,8 @@ public class Main extends Canvas implements Runnable{
 	
 	//constrain a variable within a boundaries
 	public static int constrain(int var, int min, int max){
-		if(var <= min) return var = min;
-		else if(var >= max) return var = max;
+		if(var < min) return var = min;
+		else if(var > max) return var = max;
 		else return var;
 	}
 	
