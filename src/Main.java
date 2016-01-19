@@ -148,8 +148,8 @@ public class Main extends Canvas implements Runnable{
 	
 	//constrain a variable within a boundaries
 	public static int constrain(int var, int min, int max){
-		if(var <= min) return var = min;
-		else if(var >= max) return var = max;
+		if(var < min) return var = min;
+		else if(var > max) return var = max;
 		else return var;
 	}
 	
