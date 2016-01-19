@@ -24,11 +24,11 @@ public class Controller extends KeyAdapter {
 		for(GameObject object : this.handler.getAllObjects()){
 			if(object instanceof Player){
 				switch(key){
-					case KeyEvent.VK_UP: upIsHolding = true; break;
-					case KeyEvent.VK_DOWN: downIsHolding = true; break;
-					case KeyEvent.VK_LEFT: leftIsHolding = true; break;
-					case KeyEvent.VK_RIGHT: rightIsHolding = true; break;
-					case KeyEvent.VK_ESCAPE: System.exit(1);
+				case KeyEvent.VK_UP: upIsHolding = true; break;
+				case KeyEvent.VK_DOWN: downIsHolding = true; break;
+				case KeyEvent.VK_LEFT: leftIsHolding = true; break;
+				case KeyEvent.VK_RIGHT: rightIsHolding = true; break;
+				case KeyEvent.VK_ESCAPE: System.exit(1);
 				}
 				setMotion(object);
 			}
@@ -46,7 +46,7 @@ public class Controller extends KeyAdapter {
 				case KeyEvent.VK_DOWN: downIsHolding = false; break;
 				case KeyEvent.VK_LEFT: leftIsHolding = false; break;
 				case KeyEvent.VK_RIGHT: rightIsHolding = false; break;
-					case KeyEvent.VK_SPACE:
+				case KeyEvent.VK_SPACE:
 					handler.addObject(new Bullet(object.getX()+8, object.getY()-10, GameObjectID.Bullet, handler));
 				}
 				setMotion(object);
