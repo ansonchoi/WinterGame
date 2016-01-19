@@ -15,6 +15,11 @@ public class Bullet extends GameObject{
 
 	@Override
 	public void updateLogic() {
+
+		if(y < 0 || y > Main.HEIGHT - 15 - 28){
+			this.x = -100;
+			this.y = 100;
+		}
 		y -= veloY;
 		collisionAnalyse();
 	}
@@ -35,7 +40,6 @@ public class Bullet extends GameObject{
 		for(GameObject object : handler.getAllObjects()){
 			if(object instanceof Enemy){
 				if(this.getBounds().intersects(object.getBounds())){
-					System.out.println("Killing Enemy!!");
 					handler.removeObject(object);
 				}
 			}
