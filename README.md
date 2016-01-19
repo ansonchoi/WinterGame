@@ -14,6 +14,7 @@ MAKE SURE YOU ARE IN THE GIT PROJECT FILE BEFORE YOU DO THE PROCEDURE BELOW:
 ...\Documents\GitHub\WinterGame
 ```
 
+=========================================================================================
 
 Upload to our project site:
 - after your code something new
@@ -29,6 +30,7 @@ git push
 - upload to our project repository; remember write comment what have you mainly changed in the github (you ll see the field later)
 Go to github webpage, your github repository, click the green button "New pull request", and follow the instruction. (do not confirm the pull request, have a look at Remark 4.)
 
+=========================================================================================
 
 Keep update with the project repository:
 - update your github repository
@@ -42,7 +44,7 @@ git pull origin
 ```
 - contribute your knowledge and skills to this project (do code)
 
-
+=========================================================================================
 
 Remark:
 
