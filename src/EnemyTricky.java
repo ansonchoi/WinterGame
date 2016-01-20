@@ -4,6 +4,9 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 public class EnemyTricky extends GameObject{
+	
+	public static final int width = 15, height = 15;
+	
 	public EnemyTricky(int x, int y, GameObjectID id) {
 		super(x, y, id);
 		
@@ -16,8 +19,8 @@ public class EnemyTricky extends GameObject{
 
 	@Override
 	public void updateLogic() {
-		if(y < 0 || y > Main.HEIGHT - 15 - 28) veloY *= -1;
-		if(x < 0 || x > Main.WIDTH - 15 - 28) veloX *= -1;
+		if(y < 0 || y > Main.HEIGHT - height) veloY *= -1;
+		if(x < 0 || x > Main.WIDTH - width) veloX *= -1;
 		x += veloX;
 		y += veloY;
 	}
@@ -25,11 +28,11 @@ public class EnemyTricky extends GameObject{
 	@Override
 	public void updateGraphic(Graphics g) {
 		g.setColor(Color.yellow);
-		g.fillRect(x, y, 15, 15);
+		g.fillRect(x, y, width, height);
 	}
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 15, 15);
+		return new Rectangle(x, y, width, height);
 	}
 }

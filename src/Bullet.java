@@ -4,6 +4,8 @@ import java.awt.Rectangle;
 
 public class Bullet extends GameObject{
 	
+	public static final int width = 10, height = 10;
+	
 	private GameObjectHandler handler;
 	
 	public Bullet(int x, int y, GameObjectID id, GameObjectHandler handler) {
@@ -22,12 +24,12 @@ public class Bullet extends GameObject{
 	@Override
 	public void updateGraphic(Graphics g) {
 		g.setColor(Color.green);
-		g.fillRect(x, y, 10, 10);
+		g.fillRect(x, y, width, height);
 	}
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 10, 10);
+		return new Rectangle(x, y, width, height);
 	}
 	
 	private void collisionAnalyse() {
