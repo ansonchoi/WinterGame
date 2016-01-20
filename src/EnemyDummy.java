@@ -9,23 +9,26 @@ public class EnemyDummy extends GameObject{
 		veloY = 1;
 		dmg = -20;
 		health = 10;
+		
+		width = 50;
+		height = 50;
 	}
 
 	@Override
 	public void updateLogic() {
-		if(y < 0 || y > Main.HEIGHT - 15 - 28) veloY *= -1;
+		if(y < 0 || y > Main.HEIGHT - height) veloY *= -1;
 		y += veloY;
 	}
 
 	@Override
 	public void updateGraphic(Graphics g) {
 		g.setColor(Color.red);
-		g.fillRect(x, y, 50, 50);
+		g.fillRect(x, y, width, height);
 	}
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 50, 50);
+		return new Rectangle(x, y, width, height);
 	}
 
 }

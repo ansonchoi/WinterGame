@@ -13,6 +13,9 @@ public class Player extends GameObject {
 		super(x, y, id);
 		this.handler = handler;
 		health = 100;
+		
+		width = 40;
+		height = 40;
 	}
 
 	@Override
@@ -21,8 +24,8 @@ public class Player extends GameObject {
 		y += veloY;
 		
 		//WIDTH, HEIGTH - object size - number (which is covered by the window board)
-		x = Main.constrain(x, 0, Main.WIDTH - 30 - 5);
-		y = Main.constrain(y, 0, Main.HEIGHT - 30 - 28);
+		x = Main.constrain(x, 0, Main.WIDTH - width);
+		y = Main.constrain(y, 0, Main.HEIGHT - height);
 		
 		//Here set the frequent of firing bullet by change the value of below
 		//The higher number less frequent, verse vice
@@ -36,14 +39,13 @@ public class Player extends GameObject {
 		collisionAnalyse();
 	}
 
+	//checking the collision of the Player with opponent
 	private void collisionAnalyse() {
 		GameObject temp;
 		for(int i = 0; i < handler.getAllObjects().size(); i++){
 			temp = handler.getAllObjects().get(i);
 			if(!(temp instanceof Player)){
 				if(this.getBounds().intersects(temp.getBounds())){
-					// remove object 
-					// reduce health 
 					this.changeHealth(temp);
 					handler.removeObject(temp);
 				}
@@ -55,12 +57,12 @@ public class Player extends GameObject {
 	public void updateGraphic(Graphics g) {
 		//This is an example to make a representation to the object player
 		g.setColor(Color.white);
-		g.fillRect(x, y, 40, 40);
+		g.fillRect(x, y, width, height);
 	}
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 40, 40);
+		return new Rectangle(x, y, width, height);
 	}
 	
 	public void setFire(boolean fire){
