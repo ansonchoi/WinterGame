@@ -6,10 +6,21 @@ import java.awt.Rectangle;
 public class HUD {
 	
 	public static int HEALTH = 100;
+	private GameObjectHandler handler;
+	
+	
+	public HUD(GameObjectHandler handler){
+		this.handler = handler;
+	}
 	
 	public void updateHUDLogic(){
-		// HEALTH--;
-
+		GameObject player;
+		for(int i = 0; i < handler.getAllObjects().size(); i++){
+			if(handler.getAllObjects().get(i) instanceof Player){
+				player = handler.getAllObjects().get(i);
+				HEALTH = player.getHealth();
+			}
+		}
 		HEALTH = Main.constrain(HEALTH, 0, 100);
 	}
 	

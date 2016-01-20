@@ -2,17 +2,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class Enemy extends GameObject{
+public class EnemyDummy extends GameObject{
 
-	public Enemy(int x, int y, GameObjectID id) {
+	public EnemyDummy(int x, int y, GameObjectID id) {
 		super(x, y, id);
 		veloY = 1;
+		dmg = -20;
+		health = 10;
 	}
 
 	@Override
 	public void updateLogic() {
 		if(y < 0 || y > Main.HEIGHT - 15 - 28) veloY *= -1;
-		
 		y += veloY;
 	}
 

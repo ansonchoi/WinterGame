@@ -9,6 +9,7 @@ public class Bullet extends GameObject{
 	public Bullet(int x, int y, GameObjectID id, GameObjectHandler handler) {
 		super(x, y, id);
 		veloY = 10;
+		dmg = -5;
 		this.handler = handler;
 	}
 	
@@ -35,10 +36,22 @@ public class Bullet extends GameObject{
 	
 	private void collisionAnalyse() {
 
+<<<<<<< HEAD
 		for(GameObject object : handler.getAllObjects()){
 			if(object instanceof Enemy){
 				if(this.getBounds().intersects(object.getBounds())){
 					handler.removeObject(object);
+=======
+		GameObject object;
+		for(int i = 0; i < handler.getAllObjects().size(); i++){
+			object = handler.getAllObjects().get(i);
+			if(!(object instanceof Player)){
+				if(this.getBounds().intersects(object.getBounds())){
+					object.changeHealth(this);
+					if(object.getHealth() <= 0)
+						handler.removeObject(object);
+					handler.removeObject(this);
+>>>>>>> origin/master
 				}
 			}
 		}

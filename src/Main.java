@@ -36,7 +36,7 @@ public class Main extends Canvas implements Runnable{
 		
 		new Window(WIDTH, HEIGHT, "Skip the ball!", this);
 		
-		hud = new HUD();
+		hud = new HUD(handler);
 		
 		// play background music
 		URL musicLink = Main.class.getResource("music.wav");
