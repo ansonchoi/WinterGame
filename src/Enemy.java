@@ -6,7 +6,7 @@ public class Enemy extends GameObject{
 
 	public Enemy(int x, int y, GameObjectID id) {
 		super(x, y, id);
-		veloY = 5;
+		veloY = 1;
 	}
 
 	@Override
@@ -19,12 +19,12 @@ public class Enemy extends GameObject{
 	@Override
 	public void updateGraphic(Graphics g) {
 		g.setColor(Color.red);
-		g.fillRect(x, y, 15, 15);
+		g.fillRect(x, y, 50, 50);
 	}
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 15, 15);
+		return new Rectangle(x, y, 50, 50);
 	}
 
 }

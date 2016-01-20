@@ -24,10 +24,12 @@ public class Main extends Canvas implements Runnable{
 	private GameObjectHandler handler;
 	private Menu menu;
 	private HUD hud;
+	private Spawner spawner;
 	
 	public Main(){
 		handler = new GameObjectHandler();
-		menu = new Menu(this, handler);
+		spawner = new Spawner(handler);
+		menu = new Menu(this, spawner);
 		
 		this.addKeyListener(new Controller(handler));
 		this.addMouseListener(menu);
@@ -70,10 +72,6 @@ public class Main extends Canvas implements Runnable{
 		final double optimalTime = 1000000000 / targetFPS;
 		double delta = 0;
 		
-		//used to track FPS, no effect to the functionality of game loop
-		long timer = System.currentTimeMillis();
-		int frames = 0;
-		
 		while(isRunning){
 			long now = System.nanoTime();
 			delta += (now - lastLoopTime) / optimalTime;
@@ -87,15 +85,6 @@ public class Main extends Canvas implements Runnable{
 			
 			//draw everything of the game at that time
 			if(isRunning)	updateGameGraphic();
-			
-			frames++;
-			
-			//Used to keep track with FPS, and display in console
-			if(System.currentTimeMillis() - timer > 1000){
-				timer += 1000;
-				System.out.println("FPS: " + frames);
-				frames = 0;
-			}
 		}
 		
 		stop();
@@ -112,6 +101,7 @@ public class Main extends Canvas implements Runnable{
 		if(state == GameState.Game){
 			handler.updateGameObjectsLogic();
 			hud.updateHUDLogic();
+			spawner.spawn();
 		}else if(state == GameState.Menu){
 			
 		}
