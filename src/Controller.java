@@ -1,12 +1,23 @@
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 
 public class Controller extends KeyAdapter {
 	
 	private GameObjectHandler handler;
 	private int movingSpeed;
-	private int bulletCounter = 0;
+	private int bulletCounter;
+	private Date date = new Date();
+	private long currMillTime = date.getTime();
+	private long bulletInterval = 100L;
+
+	private boolean upIsHolding;
+	private boolean downIsHolding;
+	private boolean leftIsHolding;
+	private boolean rightIsHolding;
+	private boolean spaceIsHolding;
+	
 	
 	public Controller(GameObjectHandler handler){
 		this.handler = handler;
@@ -19,12 +30,14 @@ public class Controller extends KeyAdapter {
 		for(GameObject object : this.handler.getAllObjects()){
 			if(object instanceof Player){
 				switch(key){
-					case KeyEvent.VK_UP: object.setVeloY(-movingSpeed); break;
-					case KeyEvent.VK_DOWN: object.setVeloY(movingSpeed); break;
-					case KeyEvent.VK_LEFT: object.setVeloX(-movingSpeed); break;
-					case KeyEvent.VK_RIGHT: object.setVeloX(movingSpeed); break;
-					case KeyEvent.VK_ESCAPE: System.exit(1);
+				case KeyEvent.VK_UP: upIsHolding = true; break;
+				case KeyEvent.VK_DOWN: downIsHolding = true; break;
+				case KeyEvent.VK_LEFT: leftIsHolding = true; break;
+				case KeyEvent.VK_RIGHT: rightIsHolding = true; break;
+				case KeyEvent.VK_SPACE: spaceIsHolding = true; break;
+				case KeyEvent.VK_ESCAPE: System.exit(1);
 				}
+				setMotion(object);
 			}
 		}
 	}
@@ -36,19 +49,47 @@ public class Controller extends KeyAdapter {
 			
 			if(object instanceof Player){
 				switch(key){
-					case KeyEvent.VK_UP: object.setVeloY(0); break;
-					case KeyEvent.VK_DOWN: object.setVeloY(0); break;
-					case KeyEvent.VK_LEFT: object.setVeloX(0); break;
-					case KeyEvent.VK_RIGHT: object.setVeloX(0); break;
-					case KeyEvent.VK_SPACE:
-					handler.getBulletObjects().get(bulletCounter).setX(object.getX()+8);
-					handler.getBulletObjects().get(bulletCounter).setY(object.getY()-10);
-					bulletCounter++;
-					if(bulletCounter==14)bulletCounter=0;
-					break;
-
+				case KeyEvent.VK_UP: upIsHolding = false; break;
+				case KeyEvent.VK_DOWN: downIsHolding = false; break;
+				case KeyEvent.VK_LEFT: leftIsHolding = false; break;
+				case KeyEvent.VK_RIGHT: rightIsHolding = false; break;
+				case KeyEvent.VK_SPACE: spaceIsHolding = false; break;
 				}
+				setMotion(object);
 			}
 		}
+	}
+	
+	//Depends on the button pressing state, decide the motion of player
+	private void setMotion(GameObject player){
+		date = new Date();
+
+		System.out.println(currMillTime);
+		
+		if(spaceIsHolding && (new Date()).getTime() - currMillTime >= bulletInterval){
+			this.handler.getBulletObjects().get(bulletCounter).setX(player.getX()+8);
+			this.handler.getBulletObjects().get(bulletCounter).setY(player.getY()-10);
+			bulletCounter++;
+			if(bulletCounter==14)bulletCounter=0;
+			currMillTime = date.getTime();
+		}
+		
+		if(!(upIsHolding ^ downIsHolding)){
+			player.setVeloY(0);
+		}else if(upIsHolding){
+			player.setVeloY(-movingSpeed);
+		}else if(downIsHolding){
+			player.setVeloY(movingSpeed);
+		}
+
+		if(!(leftIsHolding ^ rightIsHolding)){
+			player.setVeloX(0);
+		}else if(leftIsHolding){
+			player.setVeloX(-movingSpeed);
+		}else if(rightIsHolding){
+			player.setVeloX(movingSpeed);
+		}
+		
+
 	}
 }
