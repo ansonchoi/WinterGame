@@ -3,15 +3,13 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class EnemyDummy extends GameObject{
-
+	public static final int width = 50, height = 50;
+	
 	public EnemyDummy(int x, int y, GameObjectID id) {
 		super(x, y, id);
 		veloY = 1;
 		dmg = -20;
 		health = 10;
-		
-		width = 50;
-		height = 50;
 	}
 
 	@Override

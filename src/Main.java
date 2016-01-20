@@ -32,7 +32,7 @@ public class Main extends Canvas implements Runnable{
 		this.addKeyListener(new Controller(handler));
 		this.addMouseListener(menu);
 		
-		new Window(WIDTH + 300, HEIGHT+300, "Skip the ball!", this);
+		new Window(WIDTH + 50, HEIGHT+50, "Skip the ball!", this);
 		
 		hud = new HUD(handler);
 		

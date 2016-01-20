@@ -4,7 +4,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class Player extends GameObject {
-
+	public static final int width = 40, height = 40;
+	
 	private GameObjectHandler handler;
 	private boolean fireBullet = false;
 	private int fireTimeGap;
@@ -13,9 +14,6 @@ public class Player extends GameObject {
 		super(x, y, id);
 		this.handler = handler;
 		health = 100;
-		
-		width = 40;
-		height = 40;
 	}
 
 	@Override
@@ -33,7 +31,7 @@ public class Player extends GameObject {
 		
 		//if space button is holding, create bullet at the mid of the player constantly
 		if(fireBullet && fireTimeGap++ == 0){
-			handler.addObject(new Bullet(x + 20, y, GameObjectID.Bullet, handler));
+			handler.addObject(new Bullet(x + width / 2 - Bullet.width / 2, y, GameObjectID.Bullet, handler));
 		}
 		
 		collisionAnalyse();
