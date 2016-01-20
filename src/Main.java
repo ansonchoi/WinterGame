@@ -35,14 +35,6 @@ public class Main extends Canvas implements Runnable{
 		
 		new Window(WIDTH + 50, HEIGHT+50, "Skip the ball!", this);
 		
-		
-		
-		// play background music
-//		URL musicLink = Main.class.getResource("music.wav");
-//		AudioClip bgMusic = Applet.newAudioClip(musicLink);
-//		bgMusic.loop();
-		
-		// create object 
 	}
 	
 	//Starting the content of game inside the window
@@ -71,6 +63,12 @@ public class Main extends Canvas implements Runnable{
 		final double optimalTime = 1000000000 / targetFPS;
 		double delta = 0;
 		
+		//play background Music
+		
+		URL musicLink = Main.class.getResource("music.wav");
+		AudioClip bgMusic = Applet.newAudioClip(musicLink);
+		bgMusic.loop();
+		
 		while(isRunning){
 			long now = System.nanoTime();
 			delta += (now - lastLoopTime) / optimalTime;
@@ -90,6 +88,11 @@ public class Main extends Canvas implements Runnable{
 		
 	}
 	
+	private void If(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void updateGameLogic(){
 
 		if(state == GameState.Game){
