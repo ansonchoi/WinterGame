@@ -6,6 +6,8 @@ import java.awt.Rectangle;
 public class Player extends GameObject {
 
 	private GameObjectHandler handler;
+	private boolean fireBullet = false;
+	private int fireTimeGap;
 	
 	public Player(int x, int y, GameObjectID id, GameObjectHandler handler) {
 		super(x, y, id);
@@ -21,6 +23,15 @@ public class Player extends GameObject {
 		//WIDTH, HEIGTH - object size - number (which is covered by the window board)
 		x = Main.constrain(x, 0, Main.WIDTH - 30 - 5);
 		y = Main.constrain(y, 0, Main.HEIGHT - 30 - 28);
+		
+		//Here set the frequent of firing bullet by change the value of below
+		//The higher number less frequent, verse vice
+		fireTimeGap %= 10;
+		
+		//if space button is holding, create bullet at the mid of the player constantly
+		if(fireBullet && fireTimeGap++ == 0){
+			handler.addObject(new Bullet(x + 20, y, GameObjectID.Bullet, handler));
+		}
 		
 		collisionAnalyse();
 	}
@@ -50,6 +61,10 @@ public class Player extends GameObject {
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, 40, 40);
+	}
+	
+	public void setFire(boolean fire){
+		this.fireBullet = fire;
 	}
 	
 }

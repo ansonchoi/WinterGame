@@ -9,18 +9,16 @@ import java.applet.AudioClip;
 import java.net.URL;
 
 public class Main extends Canvas implements Runnable{
-
-	public static final long serialVersionUID = 1L;
 	
+	public static final long serialVersionUID = 1L;
 	//Size of the Window
 	public static final int WIDTH = 450, HEIGHT = WIDTH * 12 / 9;
 	
+	//State checkers
 	public GameState state = GameState.Menu;
-	
-	private Thread thread;
-	
 	private boolean isRunning = false;
 	
+	private Thread thread;
 	private GameObjectHandler handler;
 	private Menu menu;
 	private HUD hud;
