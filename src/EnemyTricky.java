@@ -11,7 +11,7 @@ public class EnemyTricky extends GameObject{
 		super(x, y, id);
 		
 		Random r = new Random();
-		veloX = r.nextInt(5) - 2;
+		veloX = r.nextInt(6) - 2;
 		veloY = 3 - Math.abs(veloX);
 		dmg = -10;
 		health = 5;

@@ -1,16 +1,11 @@
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Date;
 
 public class Controller extends KeyAdapter {
 	
 	private GameObjectHandler handler;
 	private int movingSpeed;
-	private int bulletCounter;
-	private Date date = new Date();
-	private long currMillTime = date.getTime();
-	private long bulletInterval = 100L;
 
 	private boolean upIsHolding;
 	private boolean downIsHolding;
@@ -27,7 +22,9 @@ public class Controller extends KeyAdapter {
 	public void keyPressed(KeyEvent e){
 		int key = e.getKeyCode();
 		
-		for(GameObject object : this.handler.getAllObjects()){
+		GameObject object;
+		for(int i = 0; i < handler.getAllObjects().size(); i++){
+			object = handler.getAllObjects().get(i);
 			if(object instanceof Player){
 				switch(key){
 				case KeyEvent.VK_UP: upIsHolding = true; break;
@@ -45,8 +42,9 @@ public class Controller extends KeyAdapter {
 	public void keyReleased(KeyEvent e){
 		int key = e.getKeyCode();
 
-		for(GameObject object : this.handler.getAllObjects()){
-			
+		GameObject object;
+		for(int i = 0; i < handler.getAllObjects().size(); i++){
+			object = handler.getAllObjects().get(i);
 			if(object instanceof Player){
 				switch(key){
 				case KeyEvent.VK_UP: upIsHolding = false; break;
@@ -55,7 +53,7 @@ public class Controller extends KeyAdapter {
 				case KeyEvent.VK_RIGHT: rightIsHolding = false; break;
 				case KeyEvent.VK_SPACE: spaceIsHolding = false; break;
 				}
-				setMotion((Player) object);
+				setMotion((Player)object);
 			}
 		}
 	}
