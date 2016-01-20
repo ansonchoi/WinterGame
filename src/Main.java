@@ -9,18 +9,16 @@ import java.applet.AudioClip;
 import java.net.URL;
 
 public class Main extends Canvas implements Runnable{
-
-	public static final long serialVersionUID = 1L;
 	
+	public static final long serialVersionUID = 1L;
 	//Size of the Window
 	public static final int WIDTH = 450, HEIGHT = WIDTH * 12 / 9;
 	
+	//State checkers
 	public GameState state = GameState.Menu;
-	
-	private Thread thread;
-	
 	private boolean isRunning = false;
 	
+	private Thread thread;
 	private GameObjectHandler handler;
 	private Menu menu;
 	private HUD hud;
@@ -29,19 +27,20 @@ public class Main extends Canvas implements Runnable{
 	public Main(){
 		handler = new GameObjectHandler();
 		spawner = new Spawner(handler);
-		menu = new Menu(this, spawner);
+		hud = new HUD(handler);
+		menu = new Menu(this, spawner, hud);
 		
 		this.addKeyListener(new Controller(handler));
 		this.addMouseListener(menu);
 		
-		new Window(WIDTH, HEIGHT, "Skip the ball!", this);
+		new Window(WIDTH + 50, HEIGHT+50, "Skip the ball!", this);
 		
-		hud = new HUD();
+		
 		
 		// play background music
-		URL musicLink = Main.class.getResource("music.wav");
-		AudioClip bgMusic = Applet.newAudioClip(musicLink);
-		bgMusic.loop();
+//		URL musicLink = Main.class.getResource("music.wav");
+//		AudioClip bgMusic = Applet.newAudioClip(musicLink);
+//		bgMusic.loop();
 		
 		// create object 
 	}
@@ -92,16 +91,18 @@ public class Main extends Canvas implements Runnable{
 	}
 	
 	public void updateGameLogic(){
-		if(HUD.HEALTH <= 0){
-			System.out.println("GAME OVER");
-			// later will be switch to a screen for Game Over 
-			System.exit(1);
-		}
 
 		if(state == GameState.Game){
 			handler.updateGameObjectsLogic();
 			hud.updateHUDLogic();
 			spawner.spawn();
+			
+			if(HUD.HEALTH <= 0){
+				HUD.HEALTH = 100;
+				state = GameState.Gameover;
+				handler.removeAllObject();
+			}
+			
 		}else if(state == GameState.Menu){
 			
 		}
