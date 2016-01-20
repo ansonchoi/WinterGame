@@ -12,12 +12,17 @@ public class Spawner {
 	public void init() {
 		timer = 0;
 		handler.addObject(new Player(100, 100, GameObjectID.Player, handler));
+		for(int j =0;j<=100	;j++){
+			System.out.println("New Bullets");
+			handler.addObject(new Bullet(-100,100, GameObjectID.Bullet , handler))	;
+		}
 	}
 	
 
 	public void spawn() {
 		int spawn = ++timer;
 		int normalCreep = 1;
+
 		
 		if(spawn % 200 == 0){
 			Random r = new Random();
