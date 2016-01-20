@@ -10,6 +10,7 @@ public class Player extends GameObject {
 	public Player(int x, int y, GameObjectID id, GameObjectHandler handler) {
 		super(x, y, id);
 		this.handler = handler;
+		health = 100;
 	}
 
 	@Override
@@ -25,14 +26,16 @@ public class Player extends GameObject {
 	}
 
 	private void collisionAnalyse() {
-		for(GameObject object : handler.getAllObjects()){
-			if(!(object instanceof Player)){
-				if(this.getBounds().intersects(object.getBounds()))
+		GameObject temp;
+		for(int i = 0; i < handler.getAllObjects().size(); i++){
+			temp = handler.getAllObjects().get(i);
+			if(!(temp instanceof Player)){
+				if(this.getBounds().intersects(temp.getBounds())){
 					// remove object 
-					// handler.removeObject(object);
 					// reduce health 
-					HUD.HEALTH--;
-
+					this.changeHealth(temp);
+					handler.removeObject(temp);
+				}
 			}
 		}
 	}

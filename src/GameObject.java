@@ -6,6 +6,8 @@ public abstract class GameObject {
 	protected int x,y; //position of the object in the game
 	protected GameObjectID id;
 	protected int veloX, veloY; //velocity of the object to x and y direction
+	protected int dmg; //For enemy, it take the health of player down; For medicine, it boosts the health of player;
+	protected int health; // if health drop to 0, the object will destroy
 	
 	public GameObject(int x, int y, GameObjectID id){
 		this.x = x;
@@ -18,6 +20,10 @@ public abstract class GameObject {
 	public abstract void updateLogic();
 	
 	public abstract void updateGraphic(Graphics g);
+	
+	public void changeHealth(GameObject p){
+		this.health += p.getDmg();
+	}
 	
 	//used to check if 2 object will be intersect
 	public abstract Rectangle getBounds();
@@ -52,5 +58,13 @@ public abstract class GameObject {
 
 	public void setVeloY(int veloY) {
 		this.veloY = veloY;
+	}
+	
+	public int getHealth(){
+		return this.health;
+	}
+	
+	public int getDmg(){
+		return this.dmg;
 	}
 }

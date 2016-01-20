@@ -21,7 +21,9 @@ public class Spawner {
 		
 		if(spawn % 200 == 0){
 			Random r = new Random();
-			handler.addObject(new Enemy(r.nextInt(Main.WIDTH - 30), 0, GameObjectID.Enemy));
+			handler.addObject(new EnemyDummy(r.nextInt(Main.WIDTH - 30), 0, GameObjectID.Enemy));
+			handler.addObject(new EnemyTricky(r.nextInt(Main.WIDTH - 30), 0, GameObjectID.Enemy));
+			handler.addObject(new EnemyNormal(r.nextInt(Main.WIDTH - 30), 0, GameObjectID.Enemy));
 		}
 		
 		
