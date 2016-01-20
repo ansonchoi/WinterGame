@@ -57,7 +57,9 @@ public class GameObjectHandler {
 	public LinkedList<GameObject> getAllObjects(){
 		return this.gameObjects;
 	}
+	
 	public LinkedList<GameObject> getBulletObjects(){
 		return this.bulletObjects;
 	}
 }
+ 
