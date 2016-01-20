@@ -37,7 +37,7 @@ public class Controller extends KeyAdapter {
 				case KeyEvent.VK_SPACE: spaceIsHolding = true; break;
 				case KeyEvent.VK_ESCAPE: System.exit(1);
 				}
-				setMotion(object);
+				setMotion((Player)object);
 			}
 		}
 	}
@@ -55,23 +55,18 @@ public class Controller extends KeyAdapter {
 				case KeyEvent.VK_RIGHT: rightIsHolding = false; break;
 				case KeyEvent.VK_SPACE: spaceIsHolding = false; break;
 				}
-				setMotion(object);
+				setMotion((Player) object);
 			}
 		}
 	}
 	
 	//Depends on the button pressing state, decide the motion of player
-	private void setMotion(GameObject player){
-		date = new Date();
+	private void setMotion(Player player){
 
-		System.out.println(currMillTime);
-		
-		if(spaceIsHolding && (new Date()).getTime() - currMillTime >= bulletInterval){
-			this.handler.getBulletObjects().get(bulletCounter).setX(player.getX()+8);
-			this.handler.getBulletObjects().get(bulletCounter).setY(player.getY()-10);
-			bulletCounter++;
-			if(bulletCounter==14)bulletCounter=0;
-			currMillTime = date.getTime();
+		if(spaceIsHolding){
+			player.setFire(true);
+		}else{
+			player.setFire(false);
 		}
 		
 		if(!(upIsHolding ^ downIsHolding)){
