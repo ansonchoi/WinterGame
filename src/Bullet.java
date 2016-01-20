@@ -15,7 +15,6 @@ public class Bullet extends GameObject{
 	
 	@Override
 	public void updateLogic() {
-
 		y -= veloY;
 		collisionAnalyse();
 	}
@@ -33,12 +32,6 @@ public class Bullet extends GameObject{
 	
 	private void collisionAnalyse() {
 
-<<<<<<< HEAD
-		for(GameObject object : handler.getAllObjects()){
-			if(object instanceof Enemy){
-				if(this.getBounds().intersects(object.getBounds())){
-					handler.removeObject(object);
-=======
 		GameObject object;
 		for(int i = 0; i < handler.getAllObjects().size(); i++){
 			object = handler.getAllObjects().get(i);
@@ -48,10 +41,12 @@ public class Bullet extends GameObject{
 					if(object.getHealth() <= 0)
 						handler.removeObject(object);
 					handler.removeObject(this);
->>>>>>> origin/master
 				}
 			}
 		}
+		
+		//This function is used to delete the bullet if it goes out of the boundary
+		if(this.getY() < 100) handler.removeObject(this);
 	}
 	
 }

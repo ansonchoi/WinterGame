@@ -10,12 +10,9 @@ public class Spawner {
 	
 	//Initialize the Player object and set timer = 0;
 	public void init() {
+		//make sure that when I clicked play, the timer will be reset to be 0;
 		timer = 0;
 		handler.addObject(new Player(100, 100, GameObjectID.Player, handler));
-		for(int j =0;j<=100	;j++){
-			System.out.println("New Bullets");
-			handler.addObject(new Bullet(-100,100, GameObjectID.Bullet , handler))	;
-		}
 	}
 	
 

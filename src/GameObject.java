@@ -36,22 +36,6 @@ public abstract class GameObject {
 		return y;
 	}
 	
-//	public int getVeloX() {
-//		return veloX;
-//	}
-//	
-//	public int getVeloY() {
-//		return veloY;
-//	}
-	
-	public void setX(int x) {
-		this.x = x;
-	}
-	
-	public void setY(int y) {
-		this.y = y;
-	}
-	
 	public void setVeloX(int veloX) {
 		this.veloX = veloX;
 	}
