@@ -13,9 +13,6 @@ public class Bullet extends GameObject{
 		this.handler = handler;
 	}
 	
-	
-	
-
 	@Override
 	public void updateLogic() {
 
