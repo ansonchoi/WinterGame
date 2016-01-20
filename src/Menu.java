@@ -13,10 +13,13 @@ public class Menu extends MouseAdapter{
 	
 	private Main main;
 	private Spawner spawner;
+	private HUD hud;
 	
-	public Menu(Main main, Spawner spawner){
+	public Menu(Main main, Spawner spawner, HUD hud){
 		this.main = main;
 		this.spawner = spawner;
+		this.hud = hud;
+		
 	}
 	
 	//do action when clicked certain field on the board
@@ -33,6 +36,8 @@ public class Menu extends MouseAdapter{
 			main.state = GameState.About;
 		}else if((main.state == GameState.Score 
 				|| main.state == GameState.About) && Main.isMouseOver(mx, my, 125, 410, 200, 70)){ //Back button
+			main.state = GameState.Menu;
+		}else if(main.state == GameState.Gameover && Main.isMouseOver(mx, my, 90, 400, 300, 70)){
 			main.state = GameState.Menu;
 		}
 		
@@ -82,6 +87,13 @@ public class Menu extends MouseAdapter{
 			g.setFont(new Font("arial", 1, 50));
 			g.drawRect(125, 410, 200, 70);
 			g.drawString("Back", 165, 460);
+		}else if(main.state == GameState.Gameover){
+			g.drawString("Game Over", 95, 80);
+			g.drawString("Your Score: ", 20, 250);
+			g.drawString(Integer.toString(hud.score()), 20, 350);
+			// Play again button
+			g.drawRect(90, 400, 300, 70);
+			g.drawString("Play again", 120, 455);
 		}
 	}
 	
