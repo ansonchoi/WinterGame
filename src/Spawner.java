@@ -3,11 +3,11 @@ import java.util.Random;
 public class Spawner {
 	private GameObjectHandler handler;
 	private int timer;
-	private int creepNum;
+	private int level;
 	
 	public Spawner(GameObjectHandler handler) {
 		this.handler = handler;
-		creepNum = 1;
+		level = 1;
 	}
 	
 	//Initialize the Player object and set timer = 0;
@@ -23,20 +23,20 @@ public class Spawner {
 		int spawn = ++timer;
 		
 		if(timer == 1000){
-			creepNum ++;
+			level ++;
 			timer = 0;
 		}
 		
 		if(spawn % 200 == 0){
-			for(int i = 0; i < r.nextInt(creepNum); i++){
+			for(int i = 0; i < r.nextInt(level + 1); i++){
 				handler.addObject(new EnemyDummy(r.nextInt(Main.WIDTH - EnemyDummy.width), 0, GameObjectID.Enemy));
 			}
 			
-			for(int i = 0; i < r.nextInt(creepNum); i++){
+			for(int i = 0; i < r.nextInt(level + 1); i++){
 				handler.addObject(new EnemyTricky(r.nextInt(Main.WIDTH - EnemyTricky.width), 0, GameObjectID.Enemy));
 			}
 			
-			for(int i = 0; i < r.nextInt(creepNum); i++){
+			for(int i = 0; i < r.nextInt(level + 1); i++){
 				handler.addObject(new EnemyNormal(r.nextInt(Main.WIDTH - EnemyNormal.width), 0, GameObjectID.Enemy));
 			}
 			
