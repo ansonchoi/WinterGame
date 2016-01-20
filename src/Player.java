@@ -44,12 +44,12 @@ public class Player extends GameObject {
 	public void updateGraphic(Graphics g) {
 		//This is an example to make a representation to the object player
 		g.setColor(Color.white);
-		g.fillRect(x, y, 30, 30);
+		g.fillRect(x, y, 40, 40);
 	}
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 30, 30);
+		return new Rectangle(x, y, 40, 40);
 	}
 	
 }
