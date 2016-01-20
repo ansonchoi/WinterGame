@@ -35,18 +35,13 @@ public class Bullet extends GameObject{
 	
 	private void collisionAnalyse() {
 
-		GameObject object;
-		for(int i = 0; i < handler.getAllObjects().size(); i++){
-			object = handler.getAllObjects().get(i);
+		for(GameObject object : handler.getAllObjects()){
 			if(object instanceof Enemy){
 				if(this.getBounds().intersects(object.getBounds())){
 					handler.removeObject(object);
-					handler.removeObject(this);
 				}
 			}
 		}
-
-		if(this.getY() < 100) handler.removeObject(this);
 	}
 	
 }
