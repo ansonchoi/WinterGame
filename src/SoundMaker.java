@@ -3,8 +3,8 @@ import java.applet.AudioClip;
 
 public class SoundMaker{
 
-	private AudioClip menuBgMusic = Applet.newAudioClip(Main.class.getResource("menuBg.wav"));
-	private AudioClip gameBgMusic = Applet.newAudioClip(Main.class.getResource("gameBg.wav"));
+	private AudioClip menuBgMusic = Applet.newAudioClip(Main.class.getResource("rec/menuBg.wav"));
+	private AudioClip gameBgMusic = Applet.newAudioClip(Main.class.getResource("rec/gameBg.wav"));
 
 	private boolean isFirstTimeLooping;
 

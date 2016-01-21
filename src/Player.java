@@ -18,7 +18,7 @@ public class Player extends GameObject {
 		health = 100;
 		BufferedImageLoader loader  = new BufferedImageLoader();
 		try{
-		this.objectImg = loader.loadImage("spriteSheet.png");
+		this.objectImg = loader.loadImage("rec/spriteSheet.png");
 		}catch(IOException e){
 			e.printStackTrace();
 		}catch(Exception e){
