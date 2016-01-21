@@ -88,7 +88,7 @@ public class Menu extends MouseAdapter{
 			g.drawRect(125, 410, 200, 70);
 			g.drawString("Back", 165, 460);
 		}else if(main.state == GameState.Gameover){
-			g.drawString("Game Over", 95, 80);
+//			g.drawString("Game Over", 95, 80);
 			g.drawString("Your Score: ", 20, 250);
 			g.drawString(Long.toString(hud.getEndingScore()), 20, 350);
 			// Play again button
