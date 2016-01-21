@@ -18,6 +18,10 @@ public class Spawner {
 		handler.addObject(new Earth(0, Main.HEIGHT-HUD.height, GameObjectID.Earth, handler));
 	}
 	
+	public void reset(){
+		timer = 0;
+		level = 1;
+	}
 
 	public void spawn() {
 		Random r = new Random();

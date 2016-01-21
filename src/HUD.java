@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Collections;
@@ -112,7 +113,8 @@ public class HUD extends MouseAdapter{
 		// Button
 		int button1_xpos = this.HPBarWidth + scoreBarWidth;
 		int button_width = (Main.WIDTH-button1_xpos)/2;
-		g.setColor(Color.gray);
+		g.setColor(new Color(0, 204, 255));
+		g.setFont(new Font("Helvetica",	0,12));
 		g.fillRect(button1_xpos, 0, button_width, HUD.height);
 		g.setColor(Color.red);
 		g.drawString("Pause", button1_xpos+8, 25);
@@ -120,7 +122,7 @@ public class HUD extends MouseAdapter{
 		g.drawRect(button1_xpos, 0, button_width, HUD.height);
 		// Button 2
 		int button2_xpos = this.HPBarWidth + scoreBarWidth + button_width;
-		g.setColor(Color.gray);
+		g.setColor(new Color(102, 255, 204));
 		g.fillRect(button2_xpos, 0, button_width, HUD.height);
 		g.setColor(Color.red);
 		g.drawString("Exit", button2_xpos+12, 25);
