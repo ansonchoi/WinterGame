@@ -2,8 +2,10 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class HUD {
+public class HUD extends MouseAdapter{
 
 	public static int HEALTH = 100;
 	private int colorValue = 255;
@@ -11,10 +13,56 @@ public class HUD {
 	private int HPBarWidth = 200;
 	private int score = 0;
 	private GameObjectHandler handler;
+	private Main main;
 
-
-	public HUD(GameObjectHandler handler){
+	public HUD(GameObjectHandler handler, Main main){
 		this.handler = handler;
+		this.main = main;
+	}
+
+	public void mousePressed(MouseEvent e){
+		int mx = e.getX();
+		int my = e.getY();
+		int scoreBarWidth = this.HPBarWidth*3/4;
+		int button1_xpos = this.HPBarWidth + scoreBarWidth;
+		int button_width = (Main.WIDTH-button1_xpos)/2;
+		int button2_xpos = this.HPBarWidth + scoreBarWidth + button_width;
+		int buttonYes_xpos = 50;
+		int buttonYes_ypos = 300;
+		int buttonNo_xpos = Main.WIDTH-150;
+		int buttonNo_ypos = 300;
+		int buttonConfirm_width = 100;
+		//		System.out.println(mx);
+		if(main.state==GameState.Game && Main.isMouseOver(mx, my, button1_xpos, 0, button_width, HUD.height)){
+			if(Main.isPaused)
+				Main.isPaused = false;
+			else if (!Main.checkExit)
+				Main.isPaused = true;
+
+
+		}else if(main.state==GameState.Game && Main.isMouseOver(mx, my, button2_xpos, 0, button_width, HUD.height)){
+			Main.checkExit = true;
+			if(Main.isPaused){
+				Main.isPaused = false;
+			}
+		}else if(Main.checkExit){
+			if( Main.isMouseOver(mx, my, buttonYes_xpos, buttonYes_ypos, buttonConfirm_width, HUD.height) ){
+				Main.exit = true;
+				Main.checkExit = false;
+			}else if( Main.isMouseOver(mx, my, buttonNo_xpos, buttonNo_ypos, buttonConfirm_width, HUD.height) ){
+				Main.exit = false;
+				Main.checkExit = false;
+			}
+		}
+		else if(Main.isPaused){
+			if( Main.isMouseOver(mx, my, 0, 0, button2_xpos, HUD.height) ||  Main.isMouseOver(mx, my, 0, HUD.height, Main.WIDTH, Main.HEIGHT-HUD.height) )
+				Main.isPaused = false;
+		}
+		//		else if(main.state==GameState.Game && Main.isMouseOver(mx, my, button2_xpos, 0, button_width, HUD.height)){
+		//			System.out.println("button2");
+		//		}else if(main.state==GameState.Pause && Main.isMouseOver(mx, my, button1_xpos, 0, button_width, HUD.height)){
+		//			main.state = GameState.Game;
+		//		}
 	}
 
 	public void updateHUDLogic(){
