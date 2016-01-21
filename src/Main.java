@@ -2,6 +2,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.Font;
 
 
 public class Main extends Canvas implements Runnable{
@@ -13,6 +14,9 @@ public class Main extends Canvas implements Runnable{
 	//State checkers
 	public GameState state = GameState.Menu;
 	private boolean isRunning = false;
+	public static boolean isPaused = false;
+	public static boolean checkExit = false;
+	public static boolean exit = false;
 	
 	private Thread thread;
 	private GameObjectHandler handler;
@@ -24,7 +28,7 @@ public class Main extends Canvas implements Runnable{
 	
 	public Main(){
 		handler = new GameObjectHandler();
-		hud = new HUD(handler);
+		hud = new HUD(handler, this);
 		spawner = new Spawner(handler);
 		sound = new SoundMaker();
 		menu = new Menu(this, spawner, hud, sound);
@@ -32,6 +36,7 @@ public class Main extends Canvas implements Runnable{
 		
 		this.addKeyListener(controller);
 		this.addMouseListener(menu);
+		this.addMouseListener(hud);
 		
 		new Window(WIDTH + 50, HEIGHT+50, "Skip the ball!", this);
 	}
@@ -87,18 +92,25 @@ public class Main extends Canvas implements Runnable{
 	public void updateGameLogic(){
 		sound.playBGM(state);
 		if(state == GameState.Game){
-			handler.updateGameObjectsLogic();
-			hud.updateHUDLogic();
-			spawner.spawn();
-			
-			if(HUD.HEALTH <= 0 || Earth.dead){
-				HUD.HEALTH = 100;
-				Earth.dead = false;
-				state = GameState.Gameover;
-				controller.resetMotions();
-				handler.removeAllObject();
+			if(!isPaused && !checkExit){
+				handler.updateGameObjectsLogic();
+				hud.updateHUDLogic();
+				spawner.spawn();
+				
+//				if(checkExit){
+//					exit = true;
+//				}
+				
+				if(HUD.HEALTH <= 0 || Earth.dead || this.exit){
+					HUD.HEALTH = 100;
+					Earth.dead = false;
+					this.checkExit = false;
+					this.exit = false;
+					state = GameState.Gameover;
+					controller.resetMotions();
+					handler.removeAllObject();
+				}
 			}
-			
 		}else if(state == GameState.Menu){
 			
 		}
@@ -119,6 +131,45 @@ public class Main extends Canvas implements Runnable{
 		g.setColor(Color.black); 
 		g.fillRect(0, 0, WIDTH,HEIGHT);
 		
+		if(this.isPaused){
+			g.setColor(Color.red);
+//			g.drawString("Paused", 200, 200);  
+			g.drawString("Click to continue", 175, 300);
+		}
+		
+		if(this.checkExit){
+			
+			int button1_xpos = 50;
+			int button1_ypos = 300;
+			int button2_xpos = Main.WIDTH-150;
+			int button2_ypos = 300;
+			int button_width = 100;
+			
+			//Exit string
+			g.setFont(new Font("Airal", 0, 14)); 
+			g.setColor(Color.red);
+			g.drawString("Confirm to exit?", Main.WIDTH/2-45, HUD.height + 150);
+			
+			//button for yes
+			g.setColor(Color.yellow);
+			g.fillRect(button1_xpos, button1_ypos, button_width, HUD.height);
+			g.setColor(Color.red);
+			g.drawString("Yes", button1_xpos+40, button1_ypos+25);
+			g.setColor(Color.white);
+			g.drawRect(button1_xpos, button1_ypos, button_width, HUD.height);
+			
+			//button for no
+			g.setColor(Color.pink);
+			g.fillRect(button2_xpos, button2_ypos, button_width, HUD.height);
+			g.setColor(Color.red);
+			g.drawString("No", button2_xpos+40, button2_ypos+25);
+			g.setColor(Color.white);
+			g.drawRect(button2_xpos, button2_ypos, button_width, HUD.height);
+			g.setFont(new Font("default",0,13)); 
+//			g.setColor(Color.red);
+//			g.drawString("Yes", 200, 200);
+//			g.drawString("No", 175, 300);
+		}
 		
 		if(state == GameState.Game){
 			handler.updateGameObjectsGraphic(g);
