@@ -109,6 +109,7 @@ public class Main extends Canvas implements Runnable{
 					state = GameState.Gameover;
 					controller.resetMotions();
 					handler.removeAllObject();
+					spawner.reset();
 				}
 			}
 		}else if(state == GameState.Menu){
