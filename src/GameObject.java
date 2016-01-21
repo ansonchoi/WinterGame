@@ -14,9 +14,11 @@ public abstract class GameObject {
 		this.y = y;
 		this.id = id;
 	}
+	
 	public GameObjectID getGameObjID(){
 		return this.id;
 	}
+	
 	public abstract void updateLogic();
 	
 	public abstract void updateGraphic(Graphics g);

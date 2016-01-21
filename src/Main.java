@@ -27,21 +27,14 @@ public class Main extends Canvas implements Runnable{
 	public Main(){
 		handler = new GameObjectHandler();
 		spawner = new Spawner(handler);
-		menu = new Menu(this, spawner);
+		hud = new HUD(handler);
+		menu = new Menu(this, spawner, hud);
 		
 		this.addKeyListener(new Controller(handler));
 		this.addMouseListener(menu);
 		
-		new Window(WIDTH, HEIGHT, "Skip the ball!", this);
+		new Window(WIDTH + 50, HEIGHT+50, "Skip the ball!", this);
 		
-		hud = new HUD(handler);
-		
-		// play background music
-		URL musicLink = Main.class.getResource("music.wav");
-		AudioClip bgMusic = Applet.newAudioClip(musicLink);
-		bgMusic.loop();
-		
-		// create object 
 	}
 	
 	//Starting the content of game inside the window
@@ -70,6 +63,12 @@ public class Main extends Canvas implements Runnable{
 		final double optimalTime = 1000000000 / targetFPS;
 		double delta = 0;
 		
+		//play background Music
+		
+		URL musicLink = Main.class.getResource("music.wav");
+		AudioClip bgMusic = Applet.newAudioClip(musicLink);
+		bgMusic.loop();
+		
 		while(isRunning){
 			long now = System.nanoTime();
 			delta += (now - lastLoopTime) / optimalTime;
@@ -89,17 +88,24 @@ public class Main extends Canvas implements Runnable{
 		
 	}
 	
+	private void If(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public void updateGameLogic(){
-		if(HUD.HEALTH <= 0){
-			System.out.println("GAME OVER");
-			// later will be switch to a screen for Game Over 
-			System.exit(1);
-		}
 
 		if(state == GameState.Game){
 			handler.updateGameObjectsLogic();
 			hud.updateHUDLogic();
 			spawner.spawn();
+			
+			if(HUD.HEALTH <= 0){
+				HUD.HEALTH = 100;
+				state = GameState.Gameover;
+				handler.removeAllObject();
+			}
+			
 		}else if(state == GameState.Menu){
 			
 		}

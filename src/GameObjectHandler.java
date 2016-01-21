@@ -54,6 +54,20 @@ public class GameObjectHandler {
 		}
 	}
 	
+	public void removeAllObject(){
+//		GameObject temp;
+//		for(int i = 0; i < gameObjects.size(); i ++){
+//			temp = gameObjects.get(i);
+//			
+//			if(temp.getGameObjID() == GameObjectID.Player){
+				gameObjects.clear();
+////				if(Main.state != Main.GameState.Gameover){
+////					
+////				}
+//			}
+//		}
+	}
+	
 	public LinkedList<GameObject> getAllObjects(){
 		return this.gameObjects;
 	}
