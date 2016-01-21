@@ -153,10 +153,6 @@ public class HUD extends MouseAdapter{
 		//keeping the topScores only have 3 elements, save memory space
 		topScores.removeLast();
 		
-		for(int i = 0; i < topScores.size(); i++){
-			System.out.print(topScores.get(i) + " ");
-		}
-		
 		this.score = 0;
 	}
 	
