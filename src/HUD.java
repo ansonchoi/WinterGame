@@ -2,6 +2,9 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
 
 public class HUD {
 
@@ -9,12 +12,17 @@ public class HUD {
 	private int colorValue = 255;
 	public final static int height = 40;
 	private int HPBarWidth = 200;
-	private int score = 0;
+	private long score;
 	private GameObjectHandler handler;
-
+	private LinkedList<Long> topScores;
 
 	public HUD(GameObjectHandler handler){
 		this.handler = handler;
+		//top 3 scores initialize
+		topScores = new LinkedList<Long>();
+		topScores.add((long) 0);
+		topScores.add((long) 0);
+		topScores.add((long) 0);
 	}
 
 	public void updateHUDLogic(){
@@ -71,10 +79,39 @@ public class HUD {
 		g.drawRect(button2_xpos, 0, button_width, HUD.height);
 	}
 
-	public int score(){
+	public long getEndingScore(){
 		return this.score;
 	}
+	
+	//update the top 3 scores and reset game score to zero
 	public void resetScore(){
+		topScores.push(score);
+		
+		//Sort scores from larger to smaller
+		Collections.sort(topScores, new Comparator<Long>(){
+			   @Override
+			   public int compare(Long o1, Long o2){
+			        if(o1 < o2){
+			           return 1; 
+			        }
+			        if(o1 > o2){
+			           return -1; 
+			        }
+			        return 0;
+			   }
+		});
+		
+		//keeping the topScores only have 3 elements, save memory space
+		topScores.removeLast();
+		
+		for(int i = 0; i < topScores.size(); i++){
+			System.out.print(topScores.get(i) + " ");
+		}
+		
 		this.score = 0;
+	}
+	
+	public LinkedList<Long> getTopScores(){
+		return topScores;
 	}
 }

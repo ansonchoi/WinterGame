@@ -6,11 +6,6 @@ import java.awt.event.MouseEvent;
 
 public class Menu extends MouseAdapter{
 	
-	//stores top 3 scores, probably change store location later
-	private long firstScore;
-	private long secondScore;
-	private long thirdScore;
-	
 	private Main main;
 	private Spawner spawner;
 	private HUD hud;
@@ -31,7 +26,6 @@ public class Menu extends MouseAdapter{
 		if(main.state == GameState.Menu && Main.isMouseOver(mx, my, 125, 150, 200, 70)){ // Start
 			main.state = GameState.Game;
 			sound.resetBGM(main.state);
-			hud.resetScore();
 			spawner.init();
 		}else if(main.state == GameState.Menu && Main.isMouseOver(mx, my, 125, 280, 200, 70)){ // Score
 			main.state = GameState.Score;
@@ -43,6 +37,7 @@ public class Menu extends MouseAdapter{
 		}else if(main.state == GameState.Gameover && Main.isMouseOver(mx, my, 90, 400, 300, 70)){
 			main.state = GameState.Menu;
 			sound.resetBGM(main.state);
+			hud.resetScore();
 		}
 		
 	}
@@ -67,9 +62,9 @@ public class Menu extends MouseAdapter{
 			g.drawString("Top 3 Scores", 70, 80);
 			
 			//Show Score
-			g.drawString("1: " + firstScore, 140, 150);
-			g.drawString("2: " + secondScore, 140, 250);
-			g.drawString("3: " + thirdScore, 140, 350);
+			g.drawString("1: " + hud.getTopScores().get(0), 120, 150);
+			g.drawString("2: " + hud.getTopScores().get(1), 120, 250);
+			g.drawString("3: " + hud.getTopScores().get(2), 120, 350);
 			
 			//Back button
 			g.drawRect(125, 410, 200, 70);
@@ -85,7 +80,8 @@ public class Menu extends MouseAdapter{
 			g.setFont(new Font("arial", 1, 50));
 			g.drawString("User Guide", 100, 300);
 			g.setFont(new Font("arial", 1, 20));
-			g.drawString("Press UP / DOWN / LEFT / RIGHT to control", 15, 360);
+			g.drawString("Press \"W / S / A / D\" to control", 90, 360);
+			g.drawString("Hold \"J\" to fire bullet", 130, 390);
 			
 			//Back button
 			g.setFont(new Font("arial", 1, 50));
@@ -94,7 +90,7 @@ public class Menu extends MouseAdapter{
 		}else if(main.state == GameState.Gameover){
 			g.drawString("Game Over", 95, 80);
 			g.drawString("Your Score: ", 20, 250);
-			g.drawString(Integer.toString(hud.score()), 20, 350);
+			g.drawString(Long.toString(hud.getEndingScore()), 20, 350);
 			// Play again button
 			g.drawRect(90, 400, 300, 70);
 			g.drawString("Play again", 120, 455);

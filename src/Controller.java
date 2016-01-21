@@ -37,11 +37,11 @@ public class Controller extends KeyAdapter {
 			object = handler.getAllObjects().get(i);
 			if(object instanceof Player){
 				switch(key){
-				case KeyEvent.VK_UP: upIsHolding = true; break;
-				case KeyEvent.VK_DOWN: downIsHolding = true; break;
-				case KeyEvent.VK_LEFT: leftIsHolding = true; break;
-				case KeyEvent.VK_RIGHT: rightIsHolding = true; break;
-				case KeyEvent.VK_SPACE: spaceIsHolding = true; break;
+				case KeyEvent.VK_W: upIsHolding = true; break;
+				case KeyEvent.VK_S: downIsHolding = true; break;
+				case KeyEvent.VK_A: leftIsHolding = true; break;
+				case KeyEvent.VK_D: rightIsHolding = true; break;
+				case KeyEvent.VK_J: spaceIsHolding = true; break;
 				}
 				setMotion((Player)object);
 			}
@@ -56,11 +56,11 @@ public class Controller extends KeyAdapter {
 			object = handler.getAllObjects().get(i);
 			if(object instanceof Player){
 				switch(key){
-				case KeyEvent.VK_UP: upIsHolding = false; break;
-				case KeyEvent.VK_DOWN: downIsHolding = false; break;
-				case KeyEvent.VK_LEFT: leftIsHolding = false; break;
-				case KeyEvent.VK_RIGHT: rightIsHolding = false; break;
-				case KeyEvent.VK_SPACE: spaceIsHolding = false; break;
+				case KeyEvent.VK_W: upIsHolding = false; break;
+				case KeyEvent.VK_S: downIsHolding = false; break;
+				case KeyEvent.VK_A: leftIsHolding = false; break;
+				case KeyEvent.VK_D: rightIsHolding = false; break;
+				case KeyEvent.VK_J: spaceIsHolding = false; break;
 				}
 				setMotion((Player)object);
 			}
