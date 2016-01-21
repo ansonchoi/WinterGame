@@ -49,7 +49,7 @@ public class Bullet extends GameObject{
 		}
 		
 		//This function is used to delete the bullet if it goes out of the boundary
-		if(this.getY() < 100) handler.removeObject(this);
+		if(this.getY() < 0 + HUD.height) handler.removeObject(this);
 	}
 	
 }

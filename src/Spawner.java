@@ -15,6 +15,7 @@ public class Spawner {
 		//make sure that when I clicked play, the timer will be reset to be 0;
 		timer = 0;
 		handler.addObject(new Player((Main.WIDTH - Player.width) / 2, Main.HEIGHT - Player.height - 50, GameObjectID.Player, handler));
+		handler.addObject(new Earth(0, Main.HEIGHT-HUD.height, GameObjectID.Earth, handler));
 	}
 	
 
