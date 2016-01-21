@@ -37,7 +37,7 @@ public class Player extends GameObject {
 		
 		//WIDTH, HEIGTH - object size - number (which is covered by the window board)
 		x = Main.constrain(x, 0, Main.WIDTH - width);
-		y = Main.constrain(y, 0, Main.HEIGHT - height);
+		y = Main.constrain(y, 0 + HUD.height, Main.HEIGHT - HUD.height- height);
 		
 		//Here set the frequent of firing bullet by change the value of below
 		//The higher number less frequent, verse vice
@@ -56,7 +56,7 @@ public class Player extends GameObject {
 		GameObject temp;
 		for(int i = 0; i < handler.getAllObjects().size(); i++){
 			temp = handler.getAllObjects().get(i);
-			if(!(temp instanceof Player)){
+			if(!(temp instanceof Player) && !(temp instanceof Earth)){
 				if(this.getBounds().intersects(temp.getBounds())){
 					this.changeHealth(temp);
 					handler.removeObject(temp);
