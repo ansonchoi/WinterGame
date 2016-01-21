@@ -1,4 +1,3 @@
-
 import java.awt.Graphics;
 import java.util.LinkedList;
 
@@ -76,4 +75,3 @@ public class GameObjectHandler {
 		return this.bulletObjects;
 	}
 }
- 
