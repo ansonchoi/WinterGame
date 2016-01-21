@@ -19,6 +19,14 @@ public class Controller extends KeyAdapter {
 		movingSpeed = 5;
 	}
 	
+	public void resetMotions(){
+		upIsHolding = false;
+		downIsHolding = false;
+		leftIsHolding = false;
+		rightIsHolding = false;
+		spaceIsHolding = false;
+	}
+	
 	public void keyPressed(KeyEvent e){
 		int key = e.getKeyCode();
 		

@@ -30,7 +30,7 @@ public class HUD {
 		colorValue = Main.constrain(colorValue, 0, 255);
 
 		colorValue = HEALTH * 2;
-		if(HEALTH!=0){
+		if(HEALTH!=0 && !Earth.dead){
 			score++;
 		}
 	}
@@ -51,23 +51,30 @@ public class HUD {
 		g.setColor(Color.white);
 		g.drawRect(this.HPBarWidth, 0, scoreBarWidth, HUD.height);
 		g.drawString("Score: " + score, this.HPBarWidth+5, HUD.height/2+5);
-		
+
 		// Button
 		int button1_xpos = this.HPBarWidth + scoreBarWidth;
 		int button_width = (Main.WIDTH-button1_xpos)/2;
 		g.setColor(Color.gray);
 		g.fillRect(button1_xpos, 0, button_width, HUD.height);
+		g.setColor(Color.red);
+		g.drawString("Pause", button1_xpos+8, 25);
 		g.setColor(Color.white);
 		g.drawRect(button1_xpos, 0, button_width, HUD.height);
 		// Button 2
 		int button2_xpos = this.HPBarWidth + scoreBarWidth + button_width;
 		g.setColor(Color.gray);
 		g.fillRect(button2_xpos, 0, button_width, HUD.height);
+		g.setColor(Color.red);
+		g.drawString("Exit", button2_xpos+12, 25);
 		g.setColor(Color.white);
 		g.drawRect(button2_xpos, 0, button_width, HUD.height);
 	}
-	
+
 	public int score(){
 		return this.score;
+	}
+	public void resetScore(){
+		this.score = 0;
 	}
 }
