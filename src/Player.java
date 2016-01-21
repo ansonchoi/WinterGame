@@ -1,18 +1,33 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.IOException;
+
 
 public class Player extends GameObject {
-	public static final int width = 40, height = 40;
+	public static final int width = 64, height = 64;
 	
 	private GameObjectHandler handler;
 	private boolean fireBullet = false;
 	private int fireTimeGap;
+
 	
 	public Player(int x, int y, GameObjectID id, GameObjectHandler handler) {
 		super(x, y, id);
 		this.handler = handler;
 		health = 100;
+		BufferedImageLoader loader  = new BufferedImageLoader();
+		try{
+		this.objectImg = loader.loadImage("spriteSheet.png");
+		}catch(IOException e){
+			e.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		
 	}
 
 	@Override
@@ -53,8 +68,16 @@ public class Player extends GameObject {
 	@Override
 	public void updateGraphic(Graphics g) {
 		//This is an example to make a representation to the object player
+		if(this.objectImg!=null){
+		g.drawImage(this.objectImg.getSubimage(1,1,width,height),x,y,null);
+
+		}else{
 		g.setColor(Color.white);
 		g.fillRect(x, y, width, height);
+		System.out.println("null player image");
+		}
+		
+
 	}
 
 	@Override

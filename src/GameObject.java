@@ -9,6 +9,7 @@ public abstract class GameObject {
 	protected int veloX, veloY; //velocity of the object to x and y direction
 	protected int dmg; //For enemy, it take the health of player down; For medicine, it boosts the health of player;
 	protected int health; // if health drop to 0, the object will destroy
+	protected BufferedImage objectImg;
 	
 	public GameObject(int x, int y, GameObjectID id){
 		this.x = x;
@@ -37,6 +38,10 @@ public abstract class GameObject {
 	
 	public int getY() {
 		return y;
+	}
+	
+	public BufferedImage getobjectImg() {
+		return objectImg;
 	}
 	
 	public void setVeloX(int veloX) {
