@@ -14,12 +14,13 @@ public class Menu extends MouseAdapter{
 	private Main main;
 	private Spawner spawner;
 	private HUD hud;
+	private SoundMaker sound;
 	
-	public Menu(Main main, Spawner spawner, HUD hud){
+	public Menu(Main main, Spawner spawner, HUD hud, SoundMaker sound){
 		this.main = main;
 		this.spawner = spawner;
 		this.hud = hud;
-		
+		this.sound = sound;
 	}
 	
 	//do action when clicked certain field on the board
@@ -29,6 +30,7 @@ public class Menu extends MouseAdapter{
 		
 		if(main.state == GameState.Menu && Main.isMouseOver(mx, my, 125, 150, 200, 70)){ // Start
 			main.state = GameState.Game;
+			sound.resetBGM(main.state);
 			spawner.init();
 		}else if(main.state == GameState.Menu && Main.isMouseOver(mx, my, 125, 280, 200, 70)){ // Score
 			main.state = GameState.Score;
@@ -39,6 +41,7 @@ public class Menu extends MouseAdapter{
 			main.state = GameState.Menu;
 		}else if(main.state == GameState.Gameover && Main.isMouseOver(mx, my, 90, 400, 300, 70)){
 			main.state = GameState.Menu;
+			sound.resetBGM(main.state);
 		}
 		
 	}

@@ -3,9 +3,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
-import java.applet.Applet;
-import java.applet.AudioClip;
-import java.net.URL;
 
 public class Main extends Canvas implements Runnable{
 	
@@ -22,18 +19,19 @@ public class Main extends Canvas implements Runnable{
 	private Menu menu;
 	private HUD hud;
 	private Spawner spawner;
+	private SoundMaker sound;
 	
 	public Main(){
 		handler = new GameObjectHandler();
 		spawner = new Spawner(handler);
 		hud = new HUD(handler);
-		menu = new Menu(this, spawner, hud);
+		sound = new SoundMaker();
+		menu = new Menu(this, spawner, hud, sound);
 		
 		this.addKeyListener(new Controller(handler));
 		this.addMouseListener(menu);
 		
 		new Window(WIDTH + 50, HEIGHT+50, "Skip the ball!", this);
-		
 	}
 	
 	//Starting the content of game inside the window
@@ -62,12 +60,6 @@ public class Main extends Canvas implements Runnable{
 		final double optimalTime = 1000000000 / targetFPS;
 		double delta = 0;
 		
-		//play background Music
-		
-		URL musicLink = Main.class.getResource("music.wav");
-		AudioClip bgMusic = Applet.newAudioClip(musicLink);
-		bgMusic.loop();
-		
 		while(isRunning){
 			long now = System.nanoTime();
 			delta += (now - lastLoopTime) / optimalTime;
@@ -81,19 +73,17 @@ public class Main extends Canvas implements Runnable{
 			
 			//draw everything of the game at that time
 			if(isRunning)	updateGameGraphic();
+
+			
+			
 		}
 		
 		stop();
 		
 	}
 	
-	private void If(boolean b) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void updateGameLogic(){
-
+		sound.playBGM(state);
 		if(state == GameState.Game){
 			handler.updateGameObjectsLogic();
 			hud.updateHUDLogic();
