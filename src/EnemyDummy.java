@@ -2,9 +2,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class EnemyDummy extends GameObject{
+public class EnemyDummy extends GameObject {
 	public static final int width = 50, height = 50;
-	
+
 	public EnemyDummy(int x, int y, GameObjectID id) {
 		super(x, y, id);
 		veloY = 1;
@@ -14,7 +14,8 @@ public class EnemyDummy extends GameObject{
 
 	@Override
 	public void updateLogic() {
-		if(y < 0 || y > Main.HEIGHT - height) veloY *= -1;
+		if (y < 0 || y > Main.HEIGHT - height)
+			veloY *= -1;
 		y += veloY;
 	}
 

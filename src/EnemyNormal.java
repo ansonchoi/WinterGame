@@ -2,10 +2,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class EnemyNormal extends GameObject{
-	
+public class EnemyNormal extends GameObject {
+
 	public static final int width = 35, height = 35;
-	
+
 	public EnemyNormal(int x, int y, GameObjectID id) {
 		super(x, y, id);
 		veloY = 2;
@@ -15,7 +15,8 @@ public class EnemyNormal extends GameObject{
 
 	@Override
 	public void updateLogic() {
-		if(y < 0 || y > Main.HEIGHT - height) veloY *= -1;
+		if (y < 0 || y > Main.HEIGHT - height)
+			veloY *= -1;
 		y += veloY;
 	}
 

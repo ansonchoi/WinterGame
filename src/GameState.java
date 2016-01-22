@@ -1,8 +1,4 @@
 
 public enum GameState {
-	Menu,
-	Game,
-	Score,
-	About,
-	Gameover;
+	Menu, Game, Score, About, Gameover;
 }
