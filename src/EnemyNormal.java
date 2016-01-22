@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 
 public class EnemyNormal extends GameObject{
 	
-	public static final int width = 30, height = 30;
+	public static final int width = 35, height = 35;
 	
 	public EnemyNormal(int x, int y, GameObjectID id) {
 		super(x, y, id);
