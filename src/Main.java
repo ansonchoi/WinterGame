@@ -98,15 +98,11 @@ public class Main extends Canvas implements Runnable{
 				hud.updateHUDLogic();
 				spawner.spawn();
 				
-//				if(checkExit){
-//					exit = true;
-//				}
-				
-				if(HUD.HEALTH <= 0 || Earth.dead || this.exit){
+				if(HUD.HEALTH <= 0 || Earth.dead || Main.exit){
 					HUD.HEALTH = 100;
 					Earth.dead = false;
-					this.checkExit = false;
-					this.exit = false;
+					Main.checkExit = false;
+					Main.exit = false;
 					state = GameState.Gameover;
 					controller.resetMotions();
 					handler.removeAllObject();
@@ -141,12 +137,12 @@ public class Main extends Canvas implements Runnable{
 			menu.updateMenuGraphic(g);
 		}
 		
-		if(this.isPaused){
+		if(Main.isPaused){
 			g.setColor(Color.red);  
 			g.drawString("Click to continue", 175, 300);
 		}
 		
-		if(this.checkExit){
+		if(Main.checkExit){
 			
 			int button1_xpos = 50;
 			int button1_ypos = 300;
