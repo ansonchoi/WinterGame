@@ -133,9 +133,16 @@ public class Main extends Canvas implements Runnable{
 		g.setColor(Color.black); 
 		g.fillRect(0, 0, WIDTH,HEIGHT);
 		
+		
+		if(state == GameState.Game){
+			handler.updateGameObjectsGraphic(g);
+			hud.updateHUDGraphic(g);
+		}else{
+			menu.updateMenuGraphic(g);
+		}
+		
 		if(this.isPaused){
-			g.setColor(Color.red);
-//			g.drawString("Paused", 200, 200);  
+			g.setColor(Color.red);  
 			g.drawString("Click to continue", 175, 300);
 		}
 		
@@ -168,16 +175,6 @@ public class Main extends Canvas implements Runnable{
 			g.setColor(Color.white);
 			g.drawRect(button2_xpos, button2_ypos, button_width, HUD.height);
 			g.setFont(new Font("default",0,13)); 
-//			g.setColor(Color.red);
-//			g.drawString("Yes", 200, 200);
-//			g.drawString("No", 175, 300);
-		}
-		
-		if(state == GameState.Game){
-			handler.updateGameObjectsGraphic(g);
-			hud.updateHUDGraphic(g);
-		}else{
-			menu.updateMenuGraphic(g);
 		}
 		
 		g.dispose();
