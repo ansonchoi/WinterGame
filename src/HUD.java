@@ -68,13 +68,6 @@ public class HUD extends MouseAdapter {
 					|| Main.isMouseOver(mx, my, 0, HUD.height, Main.WIDTH, Main.HEIGHT - HUD.height))
 				Main.isPaused = false;
 		}
-		// else if(main.state==GameState.Game && Main.isMouseOver(mx, my,
-		// button2_xpos, 0, button_width, HUD.height)){
-		// System.out.println("button2");
-		// }else if(main.state==GameState.Pause && Main.isMouseOver(mx, my,
-		// button1_xpos, 0, button_width, HUD.height)){
-		// main.state = GameState.Game;
-		// }
 	}
 
 	public void updateHUDLogic() {
