@@ -8,7 +8,7 @@ import java.awt.Font;
 public class Main extends Canvas implements Runnable{
 	
 	public static final long serialVersionUID = 1L;
-	//Size of the Window
+	//Size of the gaming space
 	public static final int WIDTH = 450, HEIGHT = WIDTH * 12 / 9;
 	
 	//State checkers
@@ -38,7 +38,8 @@ public class Main extends Canvas implements Runnable{
 		this.addMouseListener(menu);
 		this.addMouseListener(hud);
 		
-		new Window(WIDTH + 50, HEIGHT+50, "Skip the ball!", this);
+		//Size of the window and the name of the game
+		new Window(WIDTH + 6, HEIGHT + 28, "Skip the ball!", this);
 	}
 	
 	//Starting the content of game inside the window
