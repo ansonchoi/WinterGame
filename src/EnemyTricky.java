@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class EnemyTricky extends GameObject{
 	
-	public static final int width = 15, height = 15;
+	public static final int width = 28, height = 28;
 	
 	public EnemyTricky(int x, int y, GameObjectID id) {
 		super(x, y, id);
