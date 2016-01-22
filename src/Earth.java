@@ -1,9 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.io.IOException;
 
 
 public class Earth extends GameObject {
@@ -13,17 +10,17 @@ public class Earth extends GameObject {
 	
 	public Earth(int x, int y, GameObjectID id, GameObjectHandler handler) {
 		super(x, y, id);
-		health = 1000;
+		health = 500;
 		this.handler = handler;
 	}
 
 	@Override
 	public void updateLogic() {
-		health = Main.constrain(health, 0, 1000);
+		health = Main.constrain(health, 0, 500);
 		if(health<=0){
 			dead = true;
 		}
-		this.colorValue = (int)(health/1000f*255);
+		this.colorValue = (int)(health/500f*255);
 		this.colorValue = Main.constrain(this.colorValue, 0, 255);
 		collisionAnalyse();
 	}
@@ -45,7 +42,7 @@ public class Earth extends GameObject {
 	@Override
 	public void updateGraphic(Graphics g) {
 		//This is an example to make a representation to the object Earth
-		int currentBWidth = (int)(health/1000f*Main.WIDTH);
+		int currentBWidth = (int)(health/500f*Main.WIDTH);
 		g.setColor(Color.gray);
 		g.fillRect(0, Main.HEIGHT-HUD.height, Main.WIDTH, HUD.height);
 		g.setColor(new Color(75, this.colorValue,0));

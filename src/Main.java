@@ -98,15 +98,11 @@ public class Main extends Canvas implements Runnable{
 				hud.updateHUDLogic();
 				spawner.spawn();
 				
-//				if(checkExit){
-//					exit = true;
-//				}
-				
-				if(HUD.HEALTH <= 0 || Earth.dead || this.exit){
+				if(HUD.HEALTH <= 0 || Earth.dead || Main.exit){
 					HUD.HEALTH = 100;
 					Earth.dead = false;
-					this.checkExit = false;
-					this.exit = false;
+					Main.checkExit = false;
+					Main.exit = false;
 					state = GameState.Gameover;
 					controller.resetMotions();
 					handler.removeAllObject();
@@ -133,13 +129,20 @@ public class Main extends Canvas implements Runnable{
 		g.setColor(Color.black); 
 		g.fillRect(0, 0, WIDTH,HEIGHT);
 		
-		if(this.isPaused){
-			g.setColor(Color.red);
-//			g.drawString("Paused", 200, 200);  
+		
+		if(state == GameState.Game){
+			handler.updateGameObjectsGraphic(g);
+			hud.updateHUDGraphic(g);
+		}else{
+			menu.updateMenuGraphic(g);
+		}
+		
+		if(Main.isPaused){
+			g.setColor(Color.red);  
 			g.drawString("Click to continue", 175, 300);
 		}
 		
-		if(this.checkExit){
+		if(Main.checkExit){
 			
 			int button1_xpos = 50;
 			int button1_ypos = 300;
@@ -168,16 +171,6 @@ public class Main extends Canvas implements Runnable{
 			g.setColor(Color.white);
 			g.drawRect(button2_xpos, button2_ypos, button_width, HUD.height);
 			g.setFont(new Font("default",0,13)); 
-//			g.setColor(Color.red);
-//			g.drawString("Yes", 200, 200);
-//			g.drawString("No", 175, 300);
-		}
-		
-		if(state == GameState.Game){
-			handler.updateGameObjectsGraphic(g);
-			hud.updateHUDGraphic(g);
-		}else{
-			menu.updateMenuGraphic(g);
 		}
 		
 		g.dispose();
