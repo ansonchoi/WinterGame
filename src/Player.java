@@ -25,20 +25,20 @@ public class Player extends GameObject {
 
 	}
 
-	//Update the information related to Player
+	// Update the information related to Player
 	@Override
 	public void updateLogic() {
 		x += veloX;
 		y += veloY;
 
-		//Player never get out of the board
+		// Player never get out of the board
 		x = Main.constrain(x, 0, Main.WIDTH - width);
 		y = Main.constrain(y, 0 + HUD.height, Main.HEIGHT - HUD.height - height);
 
 		// Time gap between fires
 		fireTimeGap %= 10;
-		
-		//bullet generator
+
+		// bullet generator
 		if (fireBullet && fireTimeGap++ == 0) {
 			handler.addObject(new Bullet(x + width / 2 - Bullet.width / 2, y, GameObjectID.Bullet, handler));
 		}
@@ -60,7 +60,7 @@ public class Player extends GameObject {
 		}
 	}
 
-	//update the representation of player
+	// update the representation of player
 	@Override
 	public void updateGraphic(Graphics g) {
 		// This is an example to make a representation to the object player
@@ -79,8 +79,8 @@ public class Player extends GameObject {
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, width, height);
 	}
-	
-	//set if the player fires bullet
+
+	// set if the player fires bullet
 	public void setFire(boolean fire) {
 		this.fireBullet = fire;
 	}

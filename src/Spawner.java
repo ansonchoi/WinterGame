@@ -19,13 +19,13 @@ public class Spawner {
 		handler.addObject(new Earth(0, Main.HEIGHT - HUD.height, GameObjectID.Earth, handler));
 	}
 
-	//reset the timer and level of them game
+	// reset the timer and level of them game
 	public void reset() {
 		timer = 0;
 		level = 1;
 	}
-	
-	//spawn enemy randomly, longer you play, more enemy spawned
+
+	// spawn enemy randomly, longer you play, more enemy spawned
 	public void spawn() {
 		Random r = new Random();
 		int spawn = ++timer;

@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.Font;
+
 //the starting point of the game
 public class Main extends Canvas implements Runnable {
 
@@ -17,7 +18,7 @@ public class Main extends Canvas implements Runnable {
 	public static boolean checkExit = false;
 	public static boolean exit = false;
 
-	//objects will be pass through this file
+	// objects will be pass through this file
 	private Thread thread;
 	private GameObjectHandler handler;
 	private Menu menu;
@@ -87,7 +88,7 @@ public class Main extends Canvas implements Runnable {
 
 	}
 
-	//update the objects' information
+	// update the objects' information
 	public void updateGameLogic() {
 		sound.playBGM(state);
 		if (state == GameState.Game) {
@@ -194,8 +195,7 @@ public class Main extends Canvas implements Runnable {
 		return false;
 	}
 
-	
-	//start the game
+	// start the game
 	public static void main(String[] args) {
 		new Main();
 	}

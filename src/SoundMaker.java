@@ -12,7 +12,7 @@ public class SoundMaker {
 		isFirstTimeLooping = true;
 	}
 
-	//Play the background music according to current gamestate
+	// Play the background music according to current gamestate
 	public void playBGM(GameState state) {
 		if (state == GameState.Menu && isFirstTimeLooping) {
 			menuBgMusic.loop();
@@ -23,7 +23,7 @@ public class SoundMaker {
 		}
 	}
 
-	//Stop the background music
+	// Stop the background music
 	public void resetBGM(GameState state) {
 		if (!isFirstTimeLooping) {
 			isFirstTimeLooping = true;
