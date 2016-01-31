@@ -25,22 +25,20 @@ public class Player extends GameObject {
 
 	}
 
+	// Update the information related to Player
 	@Override
 	public void updateLogic() {
 		x += veloX;
 		y += veloY;
 
-		// WIDTH, HEIGTH - object size - number (which is covered by the window
-		// board)
+		// Player never get out of the board
 		x = Main.constrain(x, 0, Main.WIDTH - width);
 		y = Main.constrain(y, 0 + HUD.height, Main.HEIGHT - HUD.height - height);
 
-		// Here set the frequent of firing bullet by change the value of below
-		// The higher number less frequent, verse vice
+		// Time gap between fires
 		fireTimeGap %= 10;
 
-		// if space button is holding, create bullet at the mid of the player
-		// constantly
+		// bullet generator
 		if (fireBullet && fireTimeGap++ == 0) {
 			handler.addObject(new Bullet(x + width / 2 - Bullet.width / 2, y, GameObjectID.Bullet, handler));
 		}
@@ -48,7 +46,7 @@ public class Player extends GameObject {
 		collisionAnalyse();
 	}
 
-	// checking the collision of the Player with opponent
+	// checking the collision of the Player with Enemies and update player info
 	private void collisionAnalyse() {
 		GameObject temp;
 		for (int i = 0; i < handler.getAllObjects().size(); i++) {
@@ -62,6 +60,7 @@ public class Player extends GameObject {
 		}
 	}
 
+	// update the representation of player
 	@Override
 	public void updateGraphic(Graphics g) {
 		// This is an example to make a representation to the object player
@@ -81,6 +80,7 @@ public class Player extends GameObject {
 		return new Rectangle(x, y, width, height);
 	}
 
+	// set if the player fires bullet
 	public void setFire(boolean fire) {
 		this.fireBullet = fire;
 	}

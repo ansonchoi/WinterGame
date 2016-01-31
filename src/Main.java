@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.Font;
 
+//the starting point of the game
 public class Main extends Canvas implements Runnable {
 
 	public static final long serialVersionUID = 1L;
@@ -17,6 +18,7 @@ public class Main extends Canvas implements Runnable {
 	public static boolean checkExit = false;
 	public static boolean exit = false;
 
+	// objects will be pass through this file
 	private Thread thread;
 	private GameObjectHandler handler;
 	private Menu menu;
@@ -38,7 +40,7 @@ public class Main extends Canvas implements Runnable {
 		this.addMouseListener(hud);
 
 		// Size of the window and the name of the game
-		new Window(WIDTH + 6, HEIGHT + 28, "Skip the ball!", this);
+		new Window(WIDTH + 6, HEIGHT + 28, "Protect the Earth!", this);
 	}
 
 	// Starting the content of game inside the window
@@ -72,13 +74,11 @@ public class Main extends Canvas implements Runnable {
 			delta += (now - lastLoopTime) / optimalTime;
 			lastLoopTime = now;
 
-			// update the content/logic of the game
 			while (delta >= 1) {
 				updateGameLogic();
 				delta--;
 			}
 
-			// draw everything of the game at that time
 			if (isRunning)
 				updateGameGraphic();
 
@@ -88,6 +88,7 @@ public class Main extends Canvas implements Runnable {
 
 	}
 
+	// update the objects' information
 	public void updateGameLogic() {
 		sound.playBGM(state);
 		if (state == GameState.Game) {
@@ -113,7 +114,7 @@ public class Main extends Canvas implements Runnable {
 
 	}
 
-	// draw everything function
+	// update the display from the window
 	public void updateGameGraphic() {
 		BufferStrategy bs = this.getBufferStrategy();
 		if (bs == null) {
@@ -176,7 +177,7 @@ public class Main extends Canvas implements Runnable {
 
 	// Help functions:
 
-	// constrain a variable within a boundaries
+	// constrain a variable within a boundaries, (min <= var <= max)
 	public static int constrain(int var, int min, int max) {
 		if (var < min)
 			return var = min;
@@ -194,6 +195,7 @@ public class Main extends Canvas implements Runnable {
 		return false;
 	}
 
+	// start the game
 	public static void main(String[] args) {
 		new Main();
 	}

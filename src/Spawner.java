@@ -1,5 +1,6 @@
 import java.util.Random;
 
+//Enemy generator
 public class Spawner {
 	private GameObjectHandler handler;
 	private int timer;
@@ -12,18 +13,19 @@ public class Spawner {
 
 	// Initialize the Player object and set timer = 0;
 	public void init() {
-		// make sure that when I clicked play, the timer will be reset to be 0;
 		timer = 0;
 		handler.addObject(new Player((Main.WIDTH - Player.width) / 2, Main.HEIGHT - Player.height - 50,
 				GameObjectID.Player, handler));
 		handler.addObject(new Earth(0, Main.HEIGHT - HUD.height, GameObjectID.Earth, handler));
 	}
 
+	// reset the timer and level of them game
 	public void reset() {
 		timer = 0;
 		level = 1;
 	}
 
+	// spawn enemy randomly, longer you play, more enemy spawned
 	public void spawn() {
 		Random r = new Random();
 		int spawn = ++timer;

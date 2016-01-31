@@ -1,0 +1,1 @@
+Please compile Main.java and run its class file to play the game
