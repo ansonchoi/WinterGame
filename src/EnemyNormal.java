@@ -3,9 +3,10 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class EnemyNormal extends GameObject {
-
+	
 	public static final int width = 35, height = 35;
-
+	
+	//Define Normal Enemy's speed, damage to player/Earth and its health.
 	public EnemyNormal(int x, int y, GameObjectID id) {
 		super(x, y, id);
 		veloY = 2;
@@ -19,7 +20,8 @@ public class EnemyNormal extends GameObject {
 			veloY *= -1;
 		y += veloY;
 	}
-
+	
+	//Show Dummy Enemy's appearance.
 	@Override
 	public void updateGraphic(Graphics g) {
 		g.setColor(Color.blue);
