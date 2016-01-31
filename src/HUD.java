@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 
 public class HUD extends MouseAdapter {
 
-	public static int HEALTH = 100;
+	public static int HEALTH = 100;	// value of player's health to display
 	private int colorValue = 255;
 	public final static int height = 40;
 	private int HPBarWidth = 200;
@@ -19,17 +19,23 @@ public class HUD extends MouseAdapter {
 	private Main main;
 	private LinkedList<Long> topScores;
 
+	/* Constructor for HUD */
 	public HUD(GameObjectHandler handler, Main main) {
+
 		this.handler = handler;
 		this.main = main;
+
 		// top 3 scores initialize
 		topScores = new LinkedList<Long>();
 		topScores.add((long) 0);
 		topScores.add((long) 0);
 		topScores.add((long) 0);
+
 	}
 
+	/* detect which position player has pressed */
 	public void mousePressed(MouseEvent e) {
+
 		int mx = e.getX();
 		int my = e.getY();
 		int scoreBarWidth = this.HPBarWidth * 3 / 4;
@@ -41,7 +47,8 @@ public class HUD extends MouseAdapter {
 		int buttonNo_xpos = Main.WIDTH - 150;
 		int buttonNo_ypos = 300;
 		int buttonConfirm_width = 100;
-		// System.out.println(mx);
+
+		/* check game state */
 		if (main.state == GameState.Game && Main.isMouseOver(mx, my, button1_xpos, 0, button_width, HUD.height)) {
 			if (Main.isPaused)
 				Main.isPaused = false;
@@ -69,6 +76,7 @@ public class HUD extends MouseAdapter {
 		}
 	}
 
+	/* to update health value, health bar color value and game score */
 	public void updateHUDLogic() {
 		GameObject player;
 		for (int i = 0; i < handler.getAllObjects().size(); i++) {
@@ -87,6 +95,7 @@ public class HUD extends MouseAdapter {
 		}
 	}
 
+	/* to change health bar color and corresponse to different state of game */
 	public void updateHUDGraphic(Graphics g) {
 		// Health
 		g.setColor(Color.gray);
@@ -128,7 +137,7 @@ public class HUD extends MouseAdapter {
 		return this.score;
 	}
 
-	// update the top 3 scores and reset game score to zero
+	/* update the top 3 scores and reset game score to zero */
 	public void resetScore() {
 		topScores.push(score);
 
