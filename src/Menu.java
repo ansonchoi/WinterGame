@@ -42,11 +42,12 @@ public class Menu extends MouseAdapter {
 
 	}
 
+	// update the Menu representation if clicked button other than "Play"
 	public void updateMenuGraphic(Graphics g) {
 		g.setFont(new Font("arial", 1, 50));
 		g.setColor(Color.white);
 
-		if (main.state == GameState.Menu) {
+		if (main.state == GameState.Menu) { // Display Menu
 			g.drawRect(125, 150, 200, 70);
 			g.drawString("Play", 175, 200);
 
@@ -59,7 +60,6 @@ public class Menu extends MouseAdapter {
 			g.drawString("About", 155, 460);
 
 		} else if (main.state == GameState.Score) { // Display Menu-Score
-													// content
 			g.drawString("Top 3 Scores", 70, 80);
 
 			// Show Score
@@ -71,7 +71,7 @@ public class Menu extends MouseAdapter {
 			g.drawRect(125, 410, 200, 70);
 			g.drawString("Back", 165, 460);
 		} else if (main.state == GameState.About) { // Display Menu-About
-													// content
+
 			// Team info
 			g.drawString("Our team", 115, 80);
 			g.setFont(new Font("arial", 1, 20));
@@ -89,10 +89,11 @@ public class Menu extends MouseAdapter {
 			g.setFont(new Font("arial", 1, 50));
 			g.drawRect(125, 410, 200, 70);
 			g.drawString("Back", 165, 460);
-		} else if (main.state == GameState.Gameover) {
-			// g.drawString("Game Over", 95, 80);
+		} else if (main.state == GameState.Gameover) { // Display Game Over
+			// Score in this game
 			g.drawString("Your Score: ", 20, 250);
 			g.drawString(Long.toString(hud.getEndingScore()), 20, 350);
+
 			// Play again button
 			g.drawRect(90, 400, 300, 70);
 			g.drawString("Play again", 120, 455);
