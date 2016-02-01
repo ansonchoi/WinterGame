@@ -7,12 +7,14 @@ public class Earth extends GameObject {
 	private int colorValue = 255;
 	public static boolean dead;
 
+	/* constructor of Earth */
 	public Earth(int x, int y, GameObjectID id, GameObjectHandler handler) {
 		super(x, y, id);
 		health = 500;
 		this.handler = handler;
 	}
 
+	/* update Earth health and color value */
 	@Override
 	public void updateLogic() {
 		health = Main.constrain(health, 0, 500);
@@ -24,7 +26,7 @@ public class Earth extends GameObject {
 		collisionAnalyse();
 	}
 
-	// checking the collision of the Earth with opponent
+	/* check the collision of the Earth with opponent */
 	private void collisionAnalyse() {
 		GameObject temp;
 		for (int i = 0; i < handler.getAllObjects().size(); i++) {
@@ -38,6 +40,8 @@ public class Earth extends GameObject {
 		}
 	}
 
+
+	/* change color of the earth health bar */
 	@Override
 	public void updateGraphic(Graphics g) {
 		// This is an example to make a representation to the object Earth
@@ -50,6 +54,7 @@ public class Earth extends GameObject {
 		g.drawRect(0, Main.HEIGHT - HUD.height, Main.WIDTH, HUD.height);
 	}
 
+	/* used to check if 2 object will be intersect */
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, Main.WIDTH, HUD.height);

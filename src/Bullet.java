@@ -4,10 +4,11 @@ import java.awt.Rectangle;
 
 public class Bullet extends GameObject {
 
-	public static final int width = 10, height = 10;
+	public static final int width = 10, height = 10; // bullet size
 
 	private GameObjectHandler handler;
 
+	/* constructor of Bullet */
 	public Bullet(int x, int y, GameObjectID id, GameObjectHandler handler) {
 		super(x, y, id);
 		veloY = 10;
@@ -15,23 +16,27 @@ public class Bullet extends GameObject {
 		this.handler = handler;
 	}
 
+	/* bullet move upward and check collision */
 	@Override
 	public void updateLogic() {
 		y -= veloY;
 		collisionAnalyse();
 	}
 
+	/* update bullet position in the graph */
 	@Override
 	public void updateGraphic(Graphics g) {
 		g.setColor(Color.green);
 		g.fillRect(x, y, width, height);
 	}
 
+	/* used to check collision */
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, width, height);
 	}
 
+	/* check collision between bullet and enemy */
 	private void collisionAnalyse() {
 
 		GameObject object;

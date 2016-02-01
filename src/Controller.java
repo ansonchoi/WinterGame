@@ -13,11 +13,13 @@ public class Controller extends KeyAdapter {
 	private boolean rightIsHolding;
 	private boolean spaceIsHolding;
 
+	/* constructor of Controller */
 	public Controller(GameObjectHandler handler) {
 		this.handler = handler;
 		movingSpeed = 5;
 	}
 
+	/* ensure smoothness of the player */
 	public void resetMotions() {
 		upIsHolding = false;
 		downIsHolding = false;
@@ -26,6 +28,7 @@ public class Controller extends KeyAdapter {
 		spaceIsHolding = false;
 	}
 
+	/* check motion */
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 
@@ -58,6 +61,7 @@ public class Controller extends KeyAdapter {
 		}
 	}
 
+	/* check whether released key i.e. change motion */
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
 
@@ -87,7 +91,7 @@ public class Controller extends KeyAdapter {
 		}
 	}
 
-	// Depends on the button pressing state, decide the motion of player
+	/* depends on the button pressing state, decide the motion of player */ 
 	private void setMotion(Player player) {
 
 		if (spaceIsHolding) {
