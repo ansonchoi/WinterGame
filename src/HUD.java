@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 
 public class HUD extends MouseAdapter {
 
-	public static int HEALTH = 100;	// value of player's health to display
+	public static int HEALTH = 100; // value of player's health to display
 	private int colorValue = 255;
 	public final static int height = 40;
 	private int HPBarWidth = 200;

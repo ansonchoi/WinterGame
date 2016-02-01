@@ -6,7 +6,7 @@ public abstract class GameObject {
 	protected int x, y; // position of the object in the game
 	protected GameObjectID id;
 	protected int veloX, veloY; // velocity of the object to x and y direction
-	protected int dmg; // For enemy, it take the health of player down; 
+	protected int dmg; // For enemy, it take the health of player down;
 	protected int health;
 	protected BufferedImage objectImg;
 
@@ -44,7 +44,7 @@ public abstract class GameObject {
 	public BufferedImage getobjectImg() {
 		return objectImg;
 	}
-	
+
 	public void setVeloX(int veloX) {
 		this.veloX = veloX;
 	}
