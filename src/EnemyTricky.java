@@ -6,7 +6,8 @@ import java.util.Random;
 public class EnemyTricky extends GameObject {
 
 	public static final int width = 28, height = 28;
-
+	
+	//Define Tricky Enemy's speed, damage to player/Earth and its health.
 	public EnemyTricky(int x, int y, GameObjectID id) {
 		super(x, y, id);
 
@@ -26,7 +27,8 @@ public class EnemyTricky extends GameObject {
 		x += veloX;
 		y += veloY;
 	}
-
+	
+	//Show Tricky Enemy's appearance.
 	@Override
 	public void updateGraphic(Graphics g) {
 		g.setColor(Color.yellow);
@@ -37,4 +39,5 @@ public class EnemyTricky extends GameObject {
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, width, height);
 	}
+	
 }
