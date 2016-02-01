@@ -91,7 +91,7 @@ public class Controller extends KeyAdapter {
 		}
 	}
 
-	/* depends on the button pressing state, decide the motion of player */ 
+	/* depends on the button pressing state, decide the motion of player */
 	private void setMotion(Player player) {
 
 		if (spaceIsHolding) {

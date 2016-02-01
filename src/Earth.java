@@ -40,7 +40,6 @@ public class Earth extends GameObject {
 		}
 	}
 
-
 	/* change color of the earth health bar */
 	@Override
 	public void updateGraphic(Graphics g) {

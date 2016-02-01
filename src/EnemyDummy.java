@@ -3,10 +3,10 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class EnemyDummy extends GameObject {
-	
+
 	public static final int width = 50, height = 50;
-	
-	//Define Dummy Enemy's speed, damage to player/Earth and its health.
+
+	// Define Dummy Enemy's speed, damage to player/Earth and its health.
 	public EnemyDummy(int x, int y, GameObjectID id) {
 		super(x, y, id);
 		veloY = 1;
@@ -20,8 +20,8 @@ public class EnemyDummy extends GameObject {
 			veloY *= -1;
 		y += veloY;
 	}
-	
-	//Show Dummy Enemy's appearance.
+
+	// Show Dummy Enemy's appearance.
 	@Override
 	public void updateGraphic(Graphics g) {
 		g.setColor(Color.red);

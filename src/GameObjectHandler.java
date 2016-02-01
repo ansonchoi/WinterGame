@@ -55,6 +55,7 @@ public class GameObjectHandler {
 
 	public void removeAllObject() {
 		gameObjects.clear();
+		bulletObjects.clear();
 	}
 
 	public LinkedList<GameObject> getAllObjects() {
